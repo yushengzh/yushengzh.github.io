@@ -2,7 +2,7 @@ MENU
     Home                [index.html]
     Research			[research.html]
     Awards              [awards.html]
-	Publication         [publications.html]
+#	Publication         [publications.html]
 	Projects			[projects.html]
     Activities			[activities.html]
    
