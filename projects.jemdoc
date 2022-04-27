@@ -1,7 +1,16 @@
 # jemdoc: menu{MENU}{projects.html}, nofooter  
 ==Projects
 
+== WeChat Mini Program: BooKeeping
 
+== A Simple Stu-info Management System with GUI
+
+~~~
+{}{img_left}{https://pic.dogimg.com/2022/04/17/625bda0b15108.png}{alt text}{400}{200}
+Mysql for the backend \n
+tkinker(Python GUI library) for the frontend
+\[[https://github.com/yushengzh/Student-Info-MS code here]\]
+~~~
 
 
 \n
