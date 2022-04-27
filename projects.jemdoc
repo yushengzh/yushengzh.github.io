@@ -1,16 +1,25 @@
 # jemdoc: menu{MENU}{projects.html}, nofooter  
 ==Projects
 
-== WeChat Mini Program: BooKeeping
-
 == A Simple Stu-info Management System with GUI
 
 ~~~
 {}{img_left}{https://pic.dogimg.com/2022/04/17/625bda0b15108.png}{alt text}{400}{200}
 Mysql for the backend \n
 tkinker(Python GUI library) for the frontend
-\[[https://github.com/yushengzh/Student-Info-MS code here]\]
+\[[https://github.com/yushengzh/Student-Info-MS code here]\]\[[assets\DB_report.pdf report]\]
+
+
 ~~~
 
 
+== WeChat Mini Program: BooKeeping
+~~~
+{}{img_left}{https://img1.imgtp.com/2022/04/27/fzDmn14T.png}{alt text}{150}{300}
+\[[https://gitee.com/yusheng-zhao/You-bookkeeping code here]\]
+
+~~~
+
+== Course: Intro to Data Mining
+\[[https://github.com/yushengzh/misc_programs/tree/master/data%20mining%20course%20HW code here]\]\[[assets\DM_report.pdf report]\]
 \n
