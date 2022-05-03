@@ -1,0 +1,548 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>Lecture 5：Transformer</title><link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { padding-left: 32px; padding-right: 32px; padding-bottom: 0px; break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+svg[id^="mermaidChart"] { line-height: 1em; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    padding-bottom: .3em;
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+   padding-bottom: .3em;
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border-top: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table tr th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table tr td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table tr th:first-child,
+table tr td:first-child {
+    margin-top: 0;
+}
+table tr th:last-child,
+table tr td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+.html-for-mac .context-menu {
+    --item-hover-bg-color: #E6F0FE;
+}
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+/*设置水印*/
+.md-fences {
+    /*margin-bottom: 15px;
+    margin-top: 15px;
+    padding: 0.2em 1em;
+    padding-top: 8px;
+    padding-bottom: 6px;*/
+    background-image: url("F:/赵宇盛/logo.png");
+    background-repeat: no-repeat;/*设置Logo图片不平铺*/
+    background-position: center center; /*设置Logo图片的位置(我这里设置的是中间位置)*/
+    background-size: 200px 80px;/*设置Logo图片的大小*/
+}
+/*取消重叠*/
+.code-tooltip{
+	background-image: none;
+}
+.CodeMirror.cm-s-inner{
+	background: transparent !important; 
+}
+
+
+</style>
+</head>
+<body class='typora-export os-windows' >
+<div  id='write'  class = ''><h3><a name="lecture-5transformer" class="md-header-anchor"></a><span>Lecture 5：Transformer</span></h3><blockquote><p><span>Lectured by HUNG-YI LEE (李宏毅)</span>
+<span>Recorded by Yusheng zhao（</span><a href='mailto:yszhao0717@gmail.com' target='_blank' class='url'>yszhao0717@gmail.com</a><span>）</span></p></blockquote><hr /><blockquote><p><span>transformer和BERT很有关系</span></p></blockquote><p><span>transformer就是一个</span><strong><em><span>Sequence-to-sequence（Seq2seq）</span></em></strong><span>的模型。这里可以回顾下</span><em><span>Lecture 4</span></em><span>讲到的致力于解决输入为一组向量的深度学习任务的分类，其中</span><em><span>模型自己决定label的数量</span></em><span>——</span><strong><span>seq2seq任务</span></strong><span>（Input a sequence, output a sequence, the output length is determined by model）</span></p><h4><a name="应用场景" class="md-header-anchor"></a><span>应用场景</span></h4><p><span>举例来说，</span><em><span>语音识别</span></em><span>、</span><em><span>机器翻译</span></em><span>、</span><em><span>语音翻译（世界是许多语言没有文字，所以需要直接从语音翻译）</span></em><span>、</span><em><span>Text-to-Speech（TTS）Synthesis（输入文字，输出语音）</span></em><span>、</span><em><span>seq2seq for Chatbot：聊天机器人</span></em></p><p><img src="https://s1.328888.xyz/2022/05/03/hiO2T.png" style="zoom:67%;" /></p><h5><a name="tts" class="md-header-anchor"></a><span>TTS：</span></h5><p><img src="https://s1.328888.xyz/2022/05/03/hi1J7.png" style="zoom:67%;" /></p><h5><a name="seq2seq-for-chatbot" class="md-header-anchor"></a><span>Seq2seq for Chatbot：</span></h5><p><img src="https://s1.328888.xyz/2022/05/03/hibzX.png" style="zoom:67%;" /></p><h5><a name="其他nlp应用场景" class="md-header-anchor"></a><span>其他NLP应用场景：</span></h5><p><img src="https://s1.328888.xyz/2022/05/03/hiFnZ.png" style="zoom:67%;" /></p><p><span>问题，文章==&gt;答案。参考实例：</span><a href='https://arxiv.org/abs/1806.08730'><span>文章1</span></a><span>、</span><a href='https://arxiv.org/abs/1909.03329'><span>文章2</span></a></p><p><span>强调一下：对于多数的NLP问题或对多数的语音相关的任务而言，往往为这些任务</span><strong><span>客制化模型</span></strong><span>，会得到更好的结果。举例来说，Google的pixel4用的N to N的network用了一个RNN transducer的model来完成语音识别任务，模型设计针对了语音的特性，那么对于相关语音任务表现会更好。</span></p><h5><a name="seq2seq-for-syntactic-parsing" class="md-header-anchor"></a><span>Seq2seq for Syntactic Parsing</span></h5><p><span>文法剖析任务，输入一段sequence，输出一个文法剖析树</span></p><p><img src="https://s1.328888.xyz/2022/05/03/hiZeC.png" style="zoom:67%;" /></p><p><span>一篇文章</span><a href='https://arxiv.org/abs/1412.7449'><span>grammar as a foreign language</span></a><span>介绍了这个做法。用原来只用在翻译的Seq2seq的model来做文法剖析（故名为文法当作另一门“语言”，所以是硬用seq2seq）</span></p><h5><a name="seq2seq-for-multi-label-classification" class="md-header-anchor"></a><span>Seq2seq for Multi-label Classification</span></h5><p><span>Multi-label Classification：同一个东西可以属于多个class。</span></p><p><span>由于每个东西可能所属类的数量种类有所不同，所以如果只是设置一个threshold（比方说取前三名）效果可能非常不好。然而这里可以用seq2seq硬做，机器自己决定输出几个class。</span></p><p><span>参考实例：</span><a href='https://arxiv.org/abs/1909.03434'><span>文章1</span></a><span>、</span><a href='https://arxiv.org/abs/1707.05495'><span>文章2</span></a></p><h5><a name="seq2seq-for-object-detection" class="md-header-anchor"></a><span>Seq2seq for Object Detection</span></h5><p><a href='https://arxiv.org/abs/2005.12872'><span>参考文章</span></a></p><h5><a name="综上-seq2seq很powerful" class="md-header-anchor"></a><span>综上 seq2seq很powerful</span></h5><hr /><h4><a name="seq2seq的具体实现" class="md-header-anchor"></a><span>Seq2seq的具体实现</span></h4><p><img src="https://s1.328888.xyz/2022/05/03/hijDg.png" style="zoom:67%;" /></p><p><span>如上图，把输入sequence丢进</span><strong><span>Encoder</span></strong><span>，然后再扔进</span><strong><span>Decoder</span></strong><span>，由Decoder决定输出什么样的sequence。之后会细讲Encoder和Decoder的内部架构。</span></p><p><span>经典的</span><a href='https://arxiv.org/abs/1409.3215'><span>seq2seq</span></a><span>架构👇</span></p><p><img src="https://s1.328888.xyz/2022/05/03/hivw1.png" style="zoom:67%;" /></p><p><span>这节的主角</span><a href='https://arxiv.org/abs/1706.03762'><span>Transformer</span></a><span>👇</span></p><p><img src="https://s1.328888.xyz/2022/05/03/hi6Bt.png" style="zoom:67%;" /></p><hr /><h5><a name="encoder" class="md-header-anchor"></a><mark><span>Encoder</span></mark></h5><p><span>作用：input一排向量输出另外一排向量。上一个</span><em><span>lecture</span></em><span>讲的self-attention以及之前的RNN和CNN都能做到，而在</span><strong><span>Transformer里面的Encoder用的是self-attention</span></strong><span>。</span></p><p><img src="https://s1.328888.xyz/2022/05/03/hiN8e.png" style="zoom:67%;" /></p><p><span>把Encoder内部肢解出来，在Transformer里面👇</span></p><p><img src="https://s1.328888.xyz/2022/05/03/hiSIO.png" style="zoom:67%;" /></p><p><span>Encoder的关键是许多个Block，每个Block有好几个Layer在工作，每个Block整合了一系列的操作（self-attention + FC）：首先是输入进self-attention以考虑到整个sequence的资讯，output另外一排vector；然后把这排vector再丢进fully connected的feed forward network里面，再output另外一排vector——即Block的输出。</span></p><p><span>在原来的Transformer里面，做的事情更复杂：</span></p><p><img src="https://s1.328888.xyz/2022/05/03/hiovq.png" style="zoom:60%;" /></p><p><span>在Transformer里面，在输出的vector还要加上对应的input，包含这种形式的架构称之为</span><strong><span>Residual connection</span></strong><span>；接着把结果做</span><strong><span>Layer normalization</span></strong><span>（相较于batch normalization更简单些）。这个输出才是FC的输入，然后再做一次residual connection和layer normalization。</span></p><p><img src="https://s1.328888.xyz/2022/05/03/hiEJP.png" style="zoom:67%;" /></p><p><span>上图中的</span><strong><span>Add &amp; Norm</span></strong><span>就是</span><strong><span>residual connection加上layer normalization</span></strong><span>；Positonal Encoding和Multi-Head Attention之前讲过。</span></p><p><span>BERT其实就是Transformer的Encoder。</span></p><p><span>上述是原始论文的Transformer设计，相关的深入探讨：</span><a href='https://arxiv.org/abs/2002.04745'><span>On Layer Normalization in the Transformer Architecture</span></a><span>、</span><a href='https://arxiv.org/abs/2003.07845'><span>PowerNorm: Rethinking Batch Normalization in Transformers</span></a></p><p><img src="https://s1.328888.xyz/2022/05/03/hiPzm.png" style="zoom:50%;" /></p><p><span>也有Transformer的魔改版本：(a)是原始的，(b)是其中一个魔改（更换了Layer Norm顺序...）</span></p><hr /><h5><a name="decoder" class="md-header-anchor"></a><mark><span>Decoder</span></mark></h5><p><span>Decoder其实有两种</span></p><h6><a name="比较常见的一种autoregressiveat）" class="md-header-anchor"></a><strong><span>比较常见的一种：</span><mark><span>Autoregressive</span></mark><span>（AT）</span></strong><span>	</span></h6><blockquote><p><span>Speech Recognition（输入一段声音，输出一段文字） as example，说明AT如何运作</span></p></blockquote><p><span>Decoder读入Encoder的输出（某种方法），产生语音识别的结果。Decoder如何产生一段文字？</span></p><ul><li><p><span>首先要先给他一个特殊的符号</span><code>START(special token)</code><span>，代表start of sentence。在Decoder可能产生的一段文字开头加上一个特殊的符号（字），就代表了开始这个事情。每一个</span><code>token</code><span>都可以把它当作一个</span><code>One-hot</code><span>的vector（一维是1其他是0），Decoder吐出一个长度很长的向量（和Vocabulary的大小一样【取决于预计输出的文字形式】）可以用subword代表英语（如果用词汇那需要的维数太多了），用方块汉字代表中文（常用的不过三四千）。</span></p><p><img src="https://s1.328888.xyz/2022/05/03/hix1A.png" style="zoom:67%;" /></p><p><span>由于Decoder的初始输出要经过</span><code>softmax</code><span>处理，所以这个向量里面的值是一个distribution，向量的值加起来总和为1，选择分数最高的输出。然后把这个输出当作第二个token输入，以此类推：</span></p><p><img src="https://s1.328888.xyz/2022/05/03/hryBv.png" style="zoom:67%;" /></p><p><span>把前面的输出当作下一个输入，再参照之前的输入得到相应的输出。因为它只能看到的是自己的输出，如果其中一步有错误，而错误的输出被输入进Decoder，所以可能会产生一连贯错误。</span><strong><span>Error Propagation（一步错，步步错）</span></strong><span>。这个问题之后再讨论。</span></p><p><span>现在把Encoder的部分省略掉，留下Decoder，</span><strong><span>Decoder的内部结构长什么样？</span></strong><span>（以Transformer为例，比Encoder复杂多了😢）</span></p><p><img src="https://s1.328888.xyz/2022/05/03/hreDR.png" style="zoom:67%;" /></p><p><span> 除了中间一块马赛克部分，其实Encoder和Decoder差别不是很大👇</span></p><p><img src="https://s1.328888.xyz/2022/05/03/hru3i.png" style="zoom:67%;" /></p><p><span>在Decoder这边输出多了</span><code>softmax</code><span>部分，而在Blocks里面不一样的是</span><strong><span>Masked Multi-Head Attention</span></strong><span>；回顾一下</span><strong><span>self-attention</span></strong><span>：每个output都会考虑所有的input；而</span><strong><span>Masked Self-attention</span></strong><span>：每个output只考虑相对之后的input。</span></p><p><img src="https://s1.328888.xyz/2022/05/03/hrg80.png" style="zoom:67%;" /></p><p><span>如👇图所示：</span></p><p><img src="https://s1.328888.xyz/2022/05/03/hr9RJ.png" style="zoom:67%;" /></p><p><span>为什么要masked呢？原因很直觉——它的输入是一个一个打进去的（而非并行输入）。</span></p><p><strong><span>有一个关键的问题是——Decoder必须自己决定输出的sequence的长度。</span></strong><span>那么Decoder如何决定什么时候输出sequence的截止？答案是Decoder需要设计一个特别的符号：断（END）来表示，这个就是</span><strong><span>”Stop Token“</span></strong><span>。</span></p><p><img src="https://s1.328888.xyz/2022/05/03/hrXLW.png" style="zoom:67%;" /></p><p><span>有始必有终（Start—End），程序中也可以两者作为同一种符号，只不过一个sequence开始输出，另一个sequence结束输出，也是没有问题的。整个流程的描述：Decoder看到了Encoder的embedding以及看到了Begin和自己之后的滞后的输入，就知道识别结束，输出一个END符号（即END符号的机率必须最大）。</span></p><h6><a name="decoder---non-autoregressivenat）" class="md-header-anchor"></a><strong><span>Decoder—Non-autoregressive（NAT）</span></strong></h6><p><span>这个model以下简单介绍下。</span></p><p><img src="https://s1.328888.xyz/2022/05/03/hrfCy.png" style="zoom:67%;" /></p><p><span>NAT不像是AT，一个一个输出，而是把整个句子都产生出来。NAT的Decoder吃进去一排START的Token，只要一个步骤就可以完成句子的生成。</span></p><ul><li><span>那么，如何决定NAT decoder的输出长度呢？</span></li></ul><p><span>1、另外做一个predictor，来预测输出长度：可以是一个classifier，把decoder的输出扔进去，然后预测出一个数字——决定了有几个start token打进去。</span></p><p><span>2、Output a very long sequence，ignore tokens after END；不管三七二十一，输出足够多的start token，在冗余的输出中找到END特殊字符（dtop token）截取左边作为有效输出。结束。</span></p><ul><li><p><span>NAT的decoder有什么样的好处呢？</span></p><p><span>1、并行化（AT是串行的，所以NATdecoder速度更快）’</span></p><p><span>2、相较于AT更能够控制它输出的长度：因为由上我们经常使用一个classifier来决定输出长度，在一些任务中（例如语音识别），可以classifier的output除以2，速度就变快2倍。</span></p></li><li><p><span>NAT通常表现不如AT（Why？</span><strong><span>Multi-modality</span></strong><span>）</span></p></li></ul></li></ul><hr /><h5><a name="encoder和decoder是如何传输资讯的呢" class="md-header-anchor"></a><mark><span>Encoder和Decoder是如何传输资讯的呢？</span></mark></h5><p><span>方才比较Encoder和Decoder的结构时，Decoder被马赛克的一块👇</span></p><p><img src="https://s1.328888.xyz/2022/05/03/hri1k.png" style="zoom:67%;" /></p><p><span>这个结构称之为</span><mark><strong><span>Cross Attention</span></strong></mark><span>。这个模组实际上是如下运作的：</span></p><p><span>Decoder会先读进start的一个token，其中的self-attention是mask的，得到一个向量，做transform，乘以一个矩阵</span><span class="MathJax_SVG" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="3.18ex" height="2.577ex" viewBox="0 -755.9 1369.3 1109.7" role="img" focusable="false" style="vertical-align: -0.822ex;"><defs><path stroke-width="0" id="E1-MJMATHI-57" d="M436 683Q450 683 486 682T553 680Q604 680 638 681T677 682Q695 682 695 674Q695 670 692 659Q687 641 683 639T661 637Q636 636 621 632T600 624T597 615Q597 603 613 377T629 138L631 141Q633 144 637 151T649 170T666 200T690 241T720 295T759 362Q863 546 877 572T892 604Q892 619 873 628T831 637Q817 637 817 647Q817 650 819 660Q823 676 825 679T839 682Q842 682 856 682T895 682T949 681Q1015 681 1034 683Q1048 683 1048 672Q1048 666 1045 655T1038 640T1028 637Q1006 637 988 631T958 617T939 600T927 584L923 578L754 282Q586 -14 585 -15Q579 -22 561 -22Q546 -22 542 -17Q539 -14 523 229T506 480L494 462Q472 425 366 239Q222 -13 220 -15T215 -19Q210 -22 197 -22Q178 -22 176 -15Q176 -12 154 304T131 622Q129 631 121 633T82 637H58Q51 644 51 648Q52 671 64 683H76Q118 680 176 680Q301 680 313 683H323Q329 677 329 674T327 656Q322 641 318 637H297Q236 634 232 620Q262 160 266 136L501 550L499 587Q496 629 489 632Q483 636 447 637Q428 637 422 639T416 648Q416 650 418 660Q419 664 420 669T421 676T424 680T428 682T436 683Z"></path><path stroke-width="0" id="E1-MJMATHI-71" d="M33 157Q33 258 109 349T280 441Q340 441 372 389Q373 390 377 395T388 406T404 418Q438 442 450 442Q454 442 457 439T460 434Q460 425 391 149Q320 -135 320 -139Q320 -147 365 -148H390Q396 -156 396 -157T393 -175Q389 -188 383 -194H370Q339 -192 262 -192Q234 -192 211 -192T174 -192T157 -193Q143 -193 143 -185Q143 -182 145 -170Q149 -154 152 -151T172 -148Q220 -148 230 -141Q238 -136 258 -53T279 32Q279 33 272 29Q224 -10 172 -10Q117 -10 75 30T33 157ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xlink:href="#E1-MJMATHI-57" x="0" y="0"></use><use transform="scale(0.707)" xlink:href="#E1-MJMATHI-71" x="1335" y="-213"></use></g></svg></span><script type="math/tex">W_q</script><span>得到一个</span><span class="MathJax_SVG" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.068ex" height="1.76ex" viewBox="0 -504.6 460 757.9" role="img" focusable="false" style="vertical-align: -0.588ex;"><defs><path stroke-width="0" id="E5-MJMATHI-71" d="M33 157Q33 258 109 349T280 441Q340 441 372 389Q373 390 377 395T388 406T404 418Q438 442 450 442Q454 442 457 439T460 434Q460 425 391 149Q320 -135 320 -139Q320 -147 365 -148H390Q396 -156 396 -157T393 -175Q389 -188 383 -194H370Q339 -192 262 -192Q234 -192 211 -192T174 -192T157 -193Q143 -193 143 -185Q143 -182 145 -170Q149 -154 152 -151T172 -148Q220 -148 230 -141Q238 -136 258 -53T279 32Q279 33 272 29Q224 -10 172 -10Q117 -10 75 30T33 157ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xlink:href="#E5-MJMATHI-71" x="0" y="0"></use></g></svg></span><script type="math/tex">q</script><span>。同时Encoder会依照self-attention产生</span><span class="MathJax_SVG" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="8.027ex" height="2.694ex" viewBox="0 -906.7 3456.2 1160" role="img" focusable="false" style="vertical-align: -0.588ex;"><defs><path stroke-width="0" id="E3-MJMATHI-61" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z"></path><path stroke-width="0" id="E3-MJMATHI-69" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path><path stroke-width="0" id="E3-MJMAIN-2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path><path stroke-width="0" id="E3-MJMATHI-6B" d="M121 647Q121 657 125 670T137 683Q138 683 209 688T282 694Q294 694 294 686Q294 679 244 477Q194 279 194 272Q213 282 223 291Q247 309 292 354T362 415Q402 442 438 442Q468 442 485 423T503 369Q503 344 496 327T477 302T456 291T438 288Q418 288 406 299T394 328Q394 353 410 369T442 390L458 393Q446 405 434 405H430Q398 402 367 380T294 316T228 255Q230 254 243 252T267 246T293 238T320 224T342 206T359 180T365 147Q365 130 360 106T354 66Q354 26 381 26Q429 26 459 145Q461 153 479 153H483Q499 153 499 144Q499 139 496 130Q455 -11 378 -11Q333 -11 305 15T277 90Q277 108 280 121T283 145Q283 167 269 183T234 206T200 217T182 220H180Q168 178 159 139T145 81T136 44T129 20T122 7T111 -2Q98 -11 83 -11Q66 -11 57 -1T48 16Q48 26 85 176T158 471L195 616Q196 629 188 632T149 637H144Q134 637 131 637T124 640T121 647Z"></path><path stroke-width="0" id="E3-MJMATHI-76" d="M173 380Q173 405 154 405Q130 405 104 376T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Q21 294 29 316T53 368T97 419T160 441Q202 441 225 417T249 361Q249 344 246 335Q246 329 231 291T200 202T182 113Q182 86 187 69Q200 26 250 26Q287 26 319 60T369 139T398 222T409 277Q409 300 401 317T383 343T365 361T357 383Q357 405 376 424T417 443Q436 443 451 425T467 367Q467 340 455 284T418 159T347 40T241 -11Q177 -11 139 22Q102 54 102 117Q102 148 110 181T151 298Q173 362 173 380Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xlink:href="#E3-MJMATHI-61" x="0" y="0"></use><use transform="scale(0.707)" xlink:href="#E3-MJMATHI-69" x="748" y="513"></use><use xlink:href="#E3-MJMAIN-2C" x="872" y="0"></use><g transform="translate(1317,0)"><use xlink:href="#E3-MJMATHI-6B" x="0" y="0"></use><use transform="scale(0.707)" xlink:href="#E3-MJMATHI-69" x="736" y="513"></use></g><use xlink:href="#E3-MJMAIN-2C" x="2182" y="0"></use><g transform="translate(2627,0)"><use xlink:href="#E3-MJMATHI-76" x="0" y="0"></use><use transform="scale(0.707)" xlink:href="#E3-MJMATHI-69" x="685" y="513"></use></g></g></svg></span><script type="math/tex">a^i,k^i,v^i</script><span>由此计算得到</span><span class="MathJax_SVG" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.285ex" height="1.76ex" viewBox="0 -504.6 984 757.9" role="img" focusable="false" style="vertical-align: -0.588ex;"><defs><path stroke-width="0" id="E4-MJMATHI-3B1" d="M34 156Q34 270 120 356T309 442Q379 442 421 402T478 304Q484 275 485 237V208Q534 282 560 374Q564 388 566 390T582 393Q603 393 603 385Q603 376 594 346T558 261T497 161L486 147L487 123Q489 67 495 47T514 26Q528 28 540 37T557 60Q559 67 562 68T577 70Q597 70 597 62Q597 56 591 43Q579 19 556 5T512 -10H505Q438 -10 414 62L411 69L400 61Q390 53 370 41T325 18T267 -2T203 -11Q124 -11 79 39T34 156ZM208 26Q257 26 306 47T379 90L403 112Q401 255 396 290Q382 405 304 405Q235 405 183 332Q156 292 139 224T121 120Q121 71 146 49T208 26Z"></path><path stroke-width="0" id="E4-MJMATHI-69" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xlink:href="#E4-MJMATHI-3B1" x="0" y="0"></use><use transform="scale(0.707)" xlink:href="#E4-MJMATHI-69" x="905" y="-213"></use></g></svg></span><script type="math/tex">\alpha_i</script><span>。这个步骤称之为</span><strong><span>Cross Attention</span></strong><span>。（</span><span class="MathJax_SVG" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.068ex" height="1.76ex" viewBox="0 -504.6 460 757.9" role="img" focusable="false" style="vertical-align: -0.588ex;"><defs><path stroke-width="0" id="E5-MJMATHI-71" d="M33 157Q33 258 109 349T280 441Q340 441 372 389Q373 390 377 395T388 406T404 418Q438 442 450 442Q454 442 457 439T460 434Q460 425 391 149Q320 -135 320 -139Q320 -147 365 -148H390Q396 -156 396 -157T393 -175Q389 -188 383 -194H370Q339 -192 262 -192Q234 -192 211 -192T174 -192T157 -193Q143 -193 143 -185Q143 -182 145 -170Q149 -154 152 -151T172 -148Q220 -148 230 -141Q238 -136 258 -53T279 32Q279 33 272 29Q224 -10 172 -10Q117 -10 75 30T33 157ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xlink:href="#E5-MJMATHI-71" x="0" y="0"></use></g></svg></span><script type="math/tex">q</script><span>来自Decoder，</span><span class="MathJax_SVG" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="5.631ex" height="2.344ex" viewBox="0 -755.9 2424.3 1009.2" role="img" focusable="false" style="vertical-align: -0.588ex;"><defs><path stroke-width="0" id="E6-MJMATHI-61" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z"></path><path stroke-width="0" id="E6-MJMAIN-2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path><path stroke-width="0" id="E6-MJMATHI-6B" d="M121 647Q121 657 125 670T137 683Q138 683 209 688T282 694Q294 694 294 686Q294 679 244 477Q194 279 194 272Q213 282 223 291Q247 309 292 354T362 415Q402 442 438 442Q468 442 485 423T503 369Q503 344 496 327T477 302T456 291T438 288Q418 288 406 299T394 328Q394 353 410 369T442 390L458 393Q446 405 434 405H430Q398 402 367 380T294 316T228 255Q230 254 243 252T267 246T293 238T320 224T342 206T359 180T365 147Q365 130 360 106T354 66Q354 26 381 26Q429 26 459 145Q461 153 479 153H483Q499 153 499 144Q499 139 496 130Q455 -11 378 -11Q333 -11 305 15T277 90Q277 108 280 121T283 145Q283 167 269 183T234 206T200 217T182 220H180Q168 178 159 139T145 81T136 44T129 20T122 7T111 -2Q98 -11 83 -11Q66 -11 57 -1T48 16Q48 26 85 176T158 471L195 616Q196 629 188 632T149 637H144Q134 637 131 637T124 640T121 647Z"></path><path stroke-width="0" id="E6-MJMATHI-76" d="M173 380Q173 405 154 405Q130 405 104 376T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Q21 294 29 316T53 368T97 419T160 441Q202 441 225 417T249 361Q249 344 246 335Q246 329 231 291T200 202T182 113Q182 86 187 69Q200 26 250 26Q287 26 319 60T369 139T398 222T409 277Q409 300 401 317T383 343T365 361T357 383Q357 405 376 424T417 443Q436 443 451 425T467 367Q467 340 455 284T418 159T347 40T241 -11Q177 -11 139 22Q102 54 102 117Q102 148 110 181T151 298Q173 362 173 380Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xlink:href="#E6-MJMATHI-61" x="0" y="0"></use><use xlink:href="#E6-MJMAIN-2C" x="529" y="0"></use><use xlink:href="#E6-MJMATHI-6B" x="973" y="0"></use><use xlink:href="#E6-MJMAIN-2C" x="1494" y="0"></use><use xlink:href="#E6-MJMATHI-76" x="1939" y="0"></use></g></svg></span><script type="math/tex">a,k,v</script><span>来自Encoder）之后的计算和self-attention类似，得到加权值在输入全连接层中。</span></p><p><img src="https://s1.328888.xyz/2022/05/03/hr2ud.png" style="zoom:67%;" /></p><p><span>来自ICASS的文章</span><a href='[Listen, attend and spell: A neural network for large vocabulary conversational speech recognition | IEEE Conference Publication | IEEE Xplore](https://ieeexplore.ieee.org/document/7472621)'><span>Listen, attend and spell: A neural network for large vocabulary conversational speech recognition</span></a><span>——seq2seq硬做语音识别，稍逊于SOTA。有趣的是，这里已经出现attention的机制，是先有cross attention再有self-attention。</span></p><p><img src="https://s1.328888.xyz/2022/05/03/hr8dQ.png" style="zoom:67%;" /></p><p><span>attention分数较高的部分几乎就是从左往右偏移（mode至上而下）。</span></p><p><span>原论文中会用Encoder最后一层输出作为最终输出，也可以不这样，多一些另外新的想法，也有人尝试不同的cross-attention，例如</span><a href='https://arxiv.org/abs/2005.08081'><span>文章</span></a><span>。这里也可以是一个研究问题。</span></p><hr /><p><strong><span>语音识别任务在实际的train下</span></strong><span>，我们希望distribution的概率值要和ground truth（通常就是one-hot vector）越接近越好（两者做cross entropy得到的值越小越好），这玩意和分类很像，每次在通过一段语音产生一个中文字的过程都像是一个分类过程。每次“分类”都会计算一次cross entropy，每次总和起来的entropy期望其越来越小。注意到还有有END和START的特殊字符，那么这个位置的distribution值应当与对应特殊字符的one-hot的cross-entropy越小越好。另外，在训练的时候Decoder会输入ground truth而非我们之前所提到的前一个distribution——这件事叫做</span><strong><span>Teacher Forcing</span></strong><span>：using the ground truth as input。</span></p><p><span>但是test的时候，显然不能把正确答案input进去，这时候decoder只能看到自己的输入和输出，这中间显然有一个Mismatch。</span></p><p><span>这两者的mismatch的现象称之为</span><strong><span>exposure bias</span></strong><span>，怎么解决（缓解）呢？直接在Decoder的输入加一点noise，它反而会学的更好。</span></p><ul><li><p><span>Scheduled Sampling</span></p><p><span>参考文献列表：</span><a href='https://arxiv.org/abs/1506.03099'><span>Original Scheduled Sampling</span></a><span>、</span><a href='https://arxiv.org/abs/1906.07651'><span>Scheduled Sampling for Transformer</span></a><span>、</span><a href='https://arxiv.org/abs/1906.04331'><span>Parallel Scheduled Sampling</span></a></p><p><span>使用Scheduled Sampling会伤害到Transformer的平行化。所以transformer的scheduled sampling招数和传统的不一样。</span></p></li></ul><h5><a name="训练seq2seq模型的tips" class="md-header-anchor"></a><span>训练seq2seq模型的tips</span></h5><h6><a name="ucopy-mechanismu" class="md-header-anchor"></a><u><span>Copy Mechanism</span></u></h6><p><span>让Decoder从输入“复制”一些东西进来当作输出，比如聊天机器人👇</span></p><p><img src="https://s1.328888.xyz/2022/05/03/hrA33.png" style="zoom: 33%;" /></p><p><span>还有比如说做</span><u><span>摘要（Summarization）</span></u><span>任务，</span><a href='https://arxiv.org/abs/1704.04368'><span>参考文献</span></a></p><p><span>最早从输入复制东西当输出的一部分的模型叫做Pointer Network,后来有一篇变形</span><a href='https://arxiv.org/abs/1603.06393'><span>Copy Network</span></a></p><h6><a name="uguided-attentionu" class="md-header-anchor"></a><u><span>Guided Attention</span></u></h6><p><span>要求机器去领导attention的过程，使其有固定的方式进行。</span></p><p><img src="https://s1.328888.xyz/2022/05/03/hrhE4.png" style="zoom:67%;" /></p><ul><li><span>Monotonic Attention</span></li><li><span>Location-aware Attention</span></li></ul><h6><a name="ubeam-searchu集束搜索" class="md-header-anchor"></a><u><span>Beam Search</span></u><span>：集束搜索</span></h6><p><img src="https://s1.328888.xyz/2022/05/03/hrH8B.png" style="zoom:67%;" /></p><ul><li><span>Greedy Decoding</span></li></ul><p><span>对于目的和答案比较明确的任务，Beam Search比较有帮助。但是对于一些需要机器发挥“创造力”的任务，不太好用。在实践中，加入一些随机性（noise）可能结果会出乎意料的好。</span></p><p><span>遇到用optimization解决不了的问题，用RL（Reinforcement Learning）</span><strong><span>硬train一发</span></strong><span>就对了。把loss function当作是award，把你的decoder当作是Agent，是有可能可以做的。[</span><a href='https://arxiv.org/abs/1511.06732'><span>1511.06732</span><span>]</span><span> Sequence Level Training with Recurrent Neural Networks (arxiv.org)</span></a></p><p>&nbsp;</p></div>
+</body>
+</html>
