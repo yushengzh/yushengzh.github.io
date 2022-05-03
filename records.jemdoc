@@ -6,18 +6,18 @@ I have a wide research interests, mainly including Machine learning and Cryptogr
 == Machine Learning(Deep Learning)
 I Studied the online open course lectured by HUNG-YI LEE and implemented part of the
 [https://github.com/yushengzh/HW-DL2021 HWs]. Here are notebooks.
- - Lecture 1 & 2: \[[assets\ML2021\Lecture1&2.pdf Introduction to DL/ML]\]
- - Lecture 3: \[[assets\ML2021\Lecture3.pdf CNN]\]
- - Lecture 4: \[[assets\ML2021\Lecture4.pdf Self Attention]\]
- - Lecture 5: \[[assets\ML2021\Lecture5.pdf Transformer]\]
- - Lecture 6: \[[assets\ML2021\Lecture6.pdf GAN]\]
- - Lecture 7: \[[assets\ML2021\Lecture7.pdf Self-supervised Learning]\]
- - Lecture 8: \[[assets\ML2021\Lecture8.pdf Adversarial Attack]\]
- - Lecture 9: \[[assets\ML2021\Lecture9.pdf Explainable AI]\]
- - Lecture 10: \[[assets\ML2021\Lecture10.pdf Reinforcement Learning]\]
- - Lecture 11: \[[assets\ML2021\Lecture11.pdf Life Long Learning]\]
- - Lecture 12: \[[assets\ML2021\Lecture12.pdf Domain Adaptation]\]
- - Lecture 13: \[[assets\ML2021\Lecture13.pdf Network Compression]\]
+ - Lecture 1 & 2: \[[assets\ML2021\Lecture1&2.html Introduction to DL/ML]\]
+ - Lecture 3: \[[assets\ML2021\Lecture3.html CNN]\]
+ - Lecture 4: \[[assets\ML2021\Lecture4.html Self Attention]\]
+ - Lecture 5: \[[assets\ML2021\Lecture5.html Transformer]\]
+ - Lecture 6: \[[assets\ML2021\Lecture6.html GAN]\]
+ - Lecture 7: \[[assets\ML2021\Lecture7.html Self-supervised Learning]\]
+ - Lecture 8: \[[assets\ML2021\Lecture8.html Adversarial Attack]\]
+ - Lecture 9: \[[assets\ML2021\Lecture9.html Explainable AI]\]
+ - Lecture 10: \[[assets\ML2021\Lecture10.html Reinforcement Learning]\]
+ - Lecture 11: \[[assets\ML2021\Lecture11.html Life Long Learning]\]
+ - Lecture 12: \[[assets\ML2021\Lecture12.html Domain Adaptation]\]
+ - Lecture 13: \[[assets\ML2021\Lecture13.html Network Compression]\]
  - Lecture 14: \[[assets\ML2021\Lecture14：元学习.html Meta Learning]\]
 # == Network Security and Cryptography
 
