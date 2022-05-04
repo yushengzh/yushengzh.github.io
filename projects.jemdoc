@@ -1,33 +1,33 @@
 # jemdoc: menu{MENU}{projects.html}, nofooter  
 ==Projects
 
-== A Simple Stu-info Management System with GUI
+# == A Simple Stu-info Management System with GUI
 
 ~~~
-{}{img_left}{https://pic.dogimg.com/2022/04/17/625bda0b15108.png}{alt text}{400}{200}
-Mysql for the backend \n
-tkinker(Python GUI library) for the frontend \n
-\[[https://github.com/yushengzh/Student-Info-MS code here]\]\[[assets\DB_report.pdf report]\]
+# {}{img_left}{https://pic.dogimg.com/2022/04/17/625bda0b15108.png}{alt text}{400}{200}
+# Mysql for the backend \n
+# tkinker(Python GUI library) for the frontend \n
+# \[[https://github.com/yushengzh/Student-Info-MS code here]\]\[[assets\DB_report.pdf report]\]
 
 
 ~~~
 
 
-== WeChat Mini Program: BooKeeping
+# == WeChat Mini Program: BooKeeping
 
 ~~~
-{}{img_left}{https://pic.dogimg.com/2022/04/27/62692a7241eda.png}{alt text}{150}{300}{}
+# {}{img_left}{https://pic.dogimg.com/2022/04/27/62692a7241eda.png}{alt text}{150}{300}{}
 # {}{img_left}{https://pic.dogimg.com/2022/04/27/62692a6e2b216.png}{p1}{150}{300}{}
-Teamwork with Su You & Shu Yue \n
-\[[https://gitee.com/yusheng-zhao/You-bookkeeping code here]\]
+# Teamwork with Su You & Shu Yue \n
+# \[[https://gitee.com/yusheng-zhao/You-bookkeeping code here]\]
 
 ~~~
 
-== Course coding HW: Intro to Data Mining
-task 1: classifier of movie ratings \n
-task 2: cluster of the network
-\[[https://github.com/yushengzh/misc_programs/tree/master/data%20mining%20course%20HW code here]\]\[[assets\DM_report.pdf report]\]
+# == Course coding HW: Intro to Data Mining
+# task 1: classifier of movie ratings \n
+# task 2: cluster of the network
+# \[[https://github.com/yushengzh/misc_programs/tree/master/data%20mining%20course%20HW code here]\]\[[assets\DM_report.pdf report]\]
 \n
 
-== 数据安全与隐私lab
-\[[https://github.com/yushengzh/HW_Privacy-and-Security-with-Big-data code here]\]
+# == 数据安全与隐私lab
+# \[[https://github.com/yushengzh/HW_Privacy-and-Security-with-Big-data code here]\]
