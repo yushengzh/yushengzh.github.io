@@ -1,10 +1,10 @@
 # jemdoc: menu{MENU}{records.html}, nofooter  
 ==Courses 
 
-I am enthusiastic to learn knowledge via those open online courses. I will keep on lifelong learning and below is notes of online courses I take.
+I am enthusiastic to learn knowledge via open online courses. I will keep on lifelong learning and take notes just in case I could review back later if needed.
 == [https://speech.ee.ntu.edu.tw/~hylee/ml/2021-spring.php Machine Learning(Deep Learning)] from NTU
 I have taken the online open course lectured by HUNG-YI LEE and implemented part of the HWs
-[https://github.com/yushengzh/HW-DL2021 HWs]. Here are notes.
+. Below are pieces of shorthand notes.
  - Lecture 1 & 2: \[[assets\ML2021\Lecture1&2.html Introduction to DL/ML]\]
  - Lecture 3: \[[assets\ML2021\Lecture3.html CNN]\]
  - Lecture 4: \[[assets\ML2021\Lecture4.html Self Attention]\]
@@ -22,4 +22,6 @@ I have taken the online open course lectured by HUNG-YI LEE and implemented part
 
 == SMPC
 
-- \[[assets\SMPC\ABY_note.html ABY_学习笔记]\]]
+- \[[assets\SMPC\ABY_note.html ABY_note]\]]
+
+#[https://github.com/yushengzh/HW-DL2021 HWs]
