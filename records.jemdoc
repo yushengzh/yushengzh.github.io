@@ -1,10 +1,10 @@
 # jemdoc: menu{MENU}{records.html}, nofooter  
-==Courses 
+==Course or Reading Records 
 
 I am enthusiastic to learn knowledge via open online courses. I will keep on lifelong learning and take notes just in case I could review back later if needed.
 == [https://speech.ee.ntu.edu.tw/~hylee/ml/2021-spring.php Machine Learning(Deep Learning)] from NTU
-I have taken the online open course lectured by HUNG-YI LEE and implemented part of the HWs
-. Below are pieces of shorthand notes.
+I have taken the online open course lectured by HUNG-YI LEE and implemented part of the homework.
+Below are pieces of shorthand notes.（here is [https://yusheng-zhao.gitbook.io/machine-learning-quick-hand-notes/ gitbook-version].）
  - Lecture 1 & 2: \[[assets\ML2021\Lecture1&2.html Introduction to DL/ML]\]
  - Lecture 3: \[[assets\ML2021\Lecture3.html CNN]\]
  - Lecture 4: \[[assets\ML2021\Lecture4.html Self Attention]\]
@@ -20,8 +20,8 @@ I have taken the online open course lectured by HUNG-YI LEE and implemented part
  - Lecture 14: \[[assets\ML2021\Lecture14：元学习.html Meta Learning]\]
 # == Network Security and Cryptography
 
-== SMPC
+== Data Security Privacy 
 
-- \[[assets\SMPC\ABY_note.html ABY_note]\]]
+- \[[assets\SMPC\ABY_note.html ABY_note]\]
 
 #[https://github.com/yushengzh/HW-DL2021 HWs]
