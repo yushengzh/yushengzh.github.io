@@ -252,7 +252,7 @@ def standardconf():
   </div>
   
   [lastupdated]
-  Page generated |, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+  Page generated |, by <a href="http://yushengzh.github.io">Yusheng Zhao</a>.
 
   [sourcelink]
   (<a href="|">source</a>)
@@ -1182,7 +1182,7 @@ def procfile(f):
   showfooter = True
   showsourcelink = False
   showlastupdated = True
-  showlastupdatedtime = True
+  showlastupdatedtime = False 
   nodefaultcss = False
   fwtitle = False
   css = []
