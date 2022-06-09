@@ -5,27 +5,31 @@ I am enthusiastic to learn knowledge via open online courses. I will keep on lif
 == Machine Learning/Deep Learning
 I have taken the online open course([https://speech.ee.ntu.edu.tw/~hylee/ml/2021-spring.php Machine Learning] from NTU
 ) lectured by HUNG-YI LEE and implemented part of the homework.
-Below are pieces of shorthand notes.（here is [https://yusheng-zhao.gitbook.io/machine-learning-quick-hand-notes/ gitbook-version].）
- - Lecture 1 & 2: [assets\ML2021\Lecture1&2.html Introduction to DL/ML]
- - Lecture 3: [assets\ML2021\Lecture3.html CNN]
- - Lecture 4: [assets\ML2021\Lecture4.html Self Attention]
- - Lecture 5: [assets\ML2021\Lecture5.html Transformer]
- - Lecture 6: [assets\ML2021\Lecture6.html GAN]
- - Lecture 7: [assets\ML2021\Lecture7.html Self-supervised Learning]
- - Lecture 8: [assets\ML2021\Lecture8.html Adversarial Attack]
- - Lecture 9: [assets\ML2021\Lecture9.html Explainable AI]
- - Lecture 10: [assets\ML2021\Lecture10.html Reinforcement Learning]
- - Lecture 11: [assets\ML2021\Lecture11.html Life Long Learning]
- - Lecture 12: [assets\ML2021\Lecture12.html Domain Adaptation]
- - Lecture 13: [assets\ML2021\Lecture13.html Network Compression]
- - Lecture 14: [assets\ML2021\Lecture14：元学习.html Meta Learning]
+
+Here are pieces of [assets/records/ML_notes.html shorthand notes]. (here is [https://yusheng-zhao.gitbook.io/machine-learning-quick-hand-notes/ gitbook-version].)
+# - Lecture 1 & 2: [assets\ML2021\Lecture1&2.html Introduction to DL/ML]
+# - Lecture 3: [assets\ML2021\Lecture3.html CNN]
+# - Lecture 4: [assets\ML2021\Lecture4.html Self Attention]
+# - Lecture 5: [assets\ML2021\Lecture5.html Transformer]
+# - Lecture 6: [assets\ML2021\Lecture6.html GAN]
+# - Lecture 7: [assets\ML2021\Lecture7.html Self-supervised Learning]
+# - Lecture 8: [assets\ML2021\Lecture8.html Adversarial Attack]
+# - Lecture 9: [assets\ML2021\Lecture9.html Explainable AI]
+# - Lecture 10: [assets\ML2021\Lecture10.html Reinforcement Learning]
+# - Lecture 11: [assets\ML2021\Lecture11.html Life Long Learning]
+# - Lecture 12: [assets\ML2021\Lecture12.html Domain Adaptation]
+# - Lecture 13: [assets\ML2021\Lecture13.html Network Compression]
+# - Lecture 14: [assets\ML2021\Lecture14：元学习.html Meta Learning]
  
-[assets\ML2021\Parallel_Computing_for_ML.html 并行计算来做机器学习]   updated at 2022-6-5
+== Parallel Computing for ML
+[assets/records/ML2021/Parallel_Computing_for_ML.html 并行计算来做机器学习]   #updated 2022-6-5
+
+未完待续……
 
 # == Network Security and Cryptography
 
 == Data Security and Privacy 
 
-- \[[assets\SMPC\ABY_note.html ABY_note]\]
+- \[[assets\SMPC\ABY_note.html 论文阅读：ABY]\]
 
 #[https://github.com/yushengzh/HW-DL2021 HWs]
