@@ -6,7 +6,7 @@ I am enthusiastic to learn knowledge via open online courses. I will keep on lif
 I have taken the online open course([https://speech.ee.ntu.edu.tw/~hylee/ml/2021-spring.php Machine Learning] from NTU
 ) lectured by HUNG-YI LEE and implemented part of the homework.
 
-Here are pieces of [assets/records/ML_notes.html shorthand notes]. (here is [https://yusheng-zhao.gitbook.io/machine-learning-quick-hand-notes/ gitbook-version].)
+-  pieces of [assets/records/ML_notes.html shorthand notes]. (here is [https://yusheng-zhao.gitbook.io/machine-learning-quick-hand-notes/ gitbook-version].)
 # - Lecture 1 & 2: [assets\ML2021\Lecture1&2.html Introduction to DL/ML]
 # - Lecture 3: [assets\ML2021\Lecture3.html CNN]
 # - Lecture 4: [assets\ML2021\Lecture4.html Self Attention]
@@ -20,18 +20,25 @@ Here are pieces of [assets/records/ML_notes.html shorthand notes]. (here is [htt
 # - Lecture 12: [assets\ML2021\Lecture12.html Domain Adaptation]
 # - Lecture 13: [assets\ML2021\Lecture13.html Network Compression]
 # - Lecture 14: [assets\ML2021\Lecture14：元学习.html Meta Learning]
- 
-- [assets\records\statistical_learning_method\SVM原理和实现.pdf 支持向量机的原理浅介和实现] 
+- Machine Learning 
+	-- [assets\records\statistical_learning_method\SVM原理和实现.pdf SVM] 
 
-== Parallel Computing for ML
-[assets/records/ML2021/Parallel_Computing_for_ML.html 并行计算来做机器学习]   #updated 2022-6-5
+- Parallel Computing for ML
+     -- [assets/records/ML2021/Parallel_Computing_for_ML.html 并行计算来做机器学习]   #updated 2022-6-5
 
 未完待续……
 
 # == Network Security and Cryptography
 
-== Data Security and Privacy 
-
-- \[[assets\SMPC\ABY_note.html 论文阅读：ABY]\]
+== paper-reading  
+- [assets\records\reading.html list]
+- \[[assets\SMPC\ABY_note.html ABY]\]
 
 #[https://github.com/yushengzh/HW-DL2021 HWs]
+
+== Zero-knowledge proofs
+- summer, 2022
+- [assets\records\zkp.html Notes here]
+
+
+
