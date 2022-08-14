@@ -1,7 +1,7 @@
 MENU
     Home                [index.html]
-    Course Records			[records.html]
       Awards              [awards.html]
 	Projects			[projects.html]
     Activities			[activities.html]
-   
+   Misc [misc.html]
+   	- Course Records			[records.html]
