@@ -1,0 +1,686 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Machine Learning for Quantum</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="3e56bbe9-c66b-4115-b7f4-fdbb8b108867" class="page mono"><header><h1 class="page-title">Machine Learning for Quantum</h1><p class="page-description"></p></header><div class="page-body"><ul id="c2c08d0a-631a-4067-ad63-a95a7c6a37d6" class="toggle"><li><details open=""><summary>how <strong>learning methods</strong> (Point 1) are leveraged for <strong>specific tasks</strong> (Point 2) in <strong>quantum physics scenarios</strong> (Point 3).</summary><table id="46838e65-a920-4ea3-aad1-45dc7610b955" class="simple-table"><tbody><tr id="0c807453-193e-4e53-abb2-b6f1a911974c"><td id=";_~x" class="">Machine learning for quantum matter (<a href="https://arxiv.org/pdf/2003.11040">https://arxiv.org/pdf/2003.11040</a>)</td><td id="YAP_" class="">Advances in Physics</td><td id="aOpo" class="" style="width:56px">2019</td><td id="uleN" class="" style="width:172px">survey</td></tr></tbody></table><ul id="5903f54c-5e9d-494e-a977-0dc033d5fd7c" class="bulleted-list"><li style="list-style-type:disc"><strong>learning methods</strong>: <ul id="029e5fba-7bb8-4709-a6e6-0747042628f6" class="bulleted-list"><li style="list-style-type:circle">Models as: various neural networks / attention-based mechanisms / generative models / LLM agents / ……</li></ul><ul id="9f808d3a-f853-40e3-9c66-14d21b70217e" class="bulleted-list"><li style="list-style-type:circle">Paradigms as: deep learning (such as federated learning, reinforcement learning) / Bayesian inference / SVM / ……</li></ul></li></ul><ul id="cb629051-ad67-4862-b687-618d53b6bd3b" class="bulleted-list"><li style="list-style-type:disc"><strong>specific tasks</strong>: classification / regression / generation / cluster / ……</li></ul><ul id="9fbeb8ee-b98a-47a1-bfda-d681b0354301" class="bulleted-list"><li style="list-style-type:disc"><strong>quantum physics scenarios</strong> such as: <ul id="a10275df-b296-447c-926e-24d1024e1017" class="bulleted-list"><li style="list-style-type:circle">representations of quantum states<ul id="7b936e04-818e-48dd-8904-9c93782d2c7c" class="bulleted-list"><li style="list-style-type:square">classification of quantum states  </li></ul><ul id="f26e12c5-9cbf-4b4e-a615-be98a311741e" class="bulleted-list"><li style="list-style-type:square">reconstruct unknown quantum states</li></ul></li></ul><ul id="77132ca3-22cc-4c90-bdf5-b53bf1296cb2" class="bulleted-list"><li style="list-style-type:circle">quantum many-body system (prediction of state ground energy / classification of quantum phase)</li></ul><ul id="42e47cfd-9ac6-4b24-b6bc-77a735578ee9" class="bulleted-list"><li style="list-style-type:circle">quantum error correction (e.g. surface code decoding)</li></ul><ul id="3b7fa724-b040-48a9-ad8f-683a39b5fde3" class="bulleted-list"><li style="list-style-type:circle">quantum error mitigation</li></ul><ul id="4c83dded-fc44-4cf4-9745-7c8223d2c6f8" class="bulleted-list"><li style="list-style-type:circle">quantum circuit optimization/search</li></ul><ul id="59ab4d62-0263-4d8d-b3f8-4718b190b1d0" class="bulleted-list"><li style="list-style-type:circle">quantum circuit routing</li></ul><ul id="0442e042-fdac-4c8f-90a3-43b890e133f5" class="bulleted-list"><li style="list-style-type:circle">quantum resource schedule</li></ul><ul id="9b0bf174-8e08-4884-b2f4-21d8b41ebbd9" class="bulleted-list"><li style="list-style-type:circle">……</li></ul></li></ul></details></li></ul><h2 id="9f37c915-8848-4bc6-a69c-5cc03fd27ebc" class="">learning representations of quantum states</h2><ul id="193e2b46-b829-4e86-a39b-ce7287d0bdd6" class="bulleted-list"><li style="list-style-type:disc">How to reconstruct unknown quantum states</li></ul><table id="d84977c7-7d04-4784-9661-eef4f119a073" class="simple-table"><tbody><tr id="f333232a-4b1b-43ab-9718-88d82b32fbc9"><td id="OTEe" class="" style="width:230.5px">From Architectures to Applications: A Review of Neural Quantum States (<a href="https://iopscience.iop.org/article/10.1088/2058-9565/ad7168/pdf">https://iopscience.iop.org/article/10.1088/2058-9565/ad7168/pdf</a>)</td><td id="`W}l" class="block-color-red" style="width:223.5px">Quantum Science and Technology</td><td id="NZWE" class="" style="width:65.5px">2024</td><td id="Z=qb" class="" style="width:172.5px">Survey on NQS (Neural Quantum State)</td></tr><tr id="f751de54-ef9a-4acd-8d36-2dd732106d1c"><td id="OTEe" class="" style="width:230.5px">Impact of conditional modelling for a universal autoregressive quantum state (<a href="https://quantum-journal.org/papers/q-2024-02-08-1245/pdf/">https://quantum-journal.org/papers/q-2024-02-08-1245/pdf/</a>)</td><td id="`W}l" class="block-color-red" style="width:223.5px">Quantum</td><td id="NZWE" class="" style="width:65.5px">2024</td><td id="Z=qb" class="" style="width:172.5px"></td></tr><tr id="d6cce316-689f-444b-9955-44093ab7236c"><td id="OTEe" class="" style="width:230.5px">Benchmarking machine learning models for quantum state classification (<a href="https://arxiv.org/pdf/2309.07679">https://arxiv.org/pdf/2309.07679</a>)</td><td id="`W}l" class="block-color-red" style="width:223.5px">arxiv</td><td id="NZWE" class="" style="width:65.5px">2023</td><td id="Z=qb" class="" style="width:172.5px"></td></tr><tr id="0f77b067-e58f-4170-ba38-0a03a85ceb36"><td id="OTEe" class="" style="width:230.5px">Adaptive quantum state tomography with active learning (<a href="https://quantum-journal.org/papers/q-2023-10-09-1129/pdf/">https://quantum-journal.org/papers/q-2023-10-09-1129/pdf/</a>)</td><td id="`W}l" class="block-color-red" style="width:223.5px">Quantum</td><td id="NZWE" class="" style="width:65.5px">2023</td><td id="Z=qb" class="" style="width:172.5px"></td></tr><tr id="1cf0c9fe-407f-4947-9c6f-6e97206e35a0"><td id="OTEe" class="" style="width:230.5px">Flexible learning of quantum states with generative query neural networks (<a href="https://arxiv.org/pdf/2202.06804">https://arxiv.org/pdf/2202.06804</a>)</td><td id="`W}l" class="block-color-red" style="width:223.5px">Nature Communications</td><td id="NZWE" class="" style="width:65.5px">2022</td><td id="Z=qb" class="" style="width:172.5px"></td></tr><tr id="a99edaef-d01b-4d37-a3f9-8dccfede8939"><td id="OTEe" class="" style="width:230.5px">Attention-based quantum tomography (<a href="https://arxiv.org/pdf/2006.12469">https://arxiv.org/pdf/2006.12469</a>)</td><td id="`W}l" class="block-color-red" style="width:223.5px">Machine Learning: Science and Technology</td><td id="NZWE" class="" style="width:65.5px">2021</td><td id="Z=qb" class="" style="width:172.5px"></td></tr><tr id="21d2210d-2825-454b-902f-2a5649b1ed62"><td id="OTEe" class="" style="width:230.5px">Classification and reconstruction of optical quantum states with deep neural networks (<a href="https://arxiv.org/pdf/2012.02185v1">https://arxiv.org/pdf/2012.02185v1</a>)</td><td id="`W}l" class="block-color-red" style="width:223.5px">Physical Review Research</td><td id="NZWE" class="" style="width:65.5px">2020</td><td id="Z=qb" class="" style="width:172.5px"></td></tr><tr id="1c86f718-11ae-479e-83dd-4da69b66a27f"><td id="OTEe" class="" style="width:230.5px">Reconstructing quantum states with generative models (<a href="https://arxiv.org/pdf/1810.10584">https://arxiv.org/pdf/1810.10584</a>)</td><td id="`W}l" class="block-color-red" style="width:223.5px">Nature Machine Intelligence</td><td id="NZWE" class="" style="width:65.5px">2019</td><td id="Z=qb" class="" style="width:172.5px"></td></tr></tbody></table><ul id="0415d3ce-0e66-4205-965b-3225e2cea85a" class="bulleted-list"><li style="list-style-type:disc">quantum states discrimination</li></ul><table id="79373dc7-1a8f-4fa3-a203-eacf2ff29878" class="simple-table"><tbody><tr id="6cb6e724-a0f8-4fef-9ad8-1fb72265d125"><td id="IYoD" class="" style="width:326.5px">SSL4Q: Semi-Supervised Learning of Quantum Data with Application to Quantum State Classification (<a href="https://proceedings.mlr.press/v235/tang24i.html">https://proceedings.mlr.press/v235/tang24i.html</a>)</td><td id="_Sno" class="block-color-red" style="width:68.5px">ICML</td><td id="hAMy" class="" style="width:68.5px">2024</td><td id="XMP]" class="" style="width:227.5px">shadow embedding + attention-like feature extractor + teacher-student paradigm</td></tr><tr id="7d37a040-dc99-4f68-92a0-759abece2c5b"><td id="IYoD" class="" style="width:326.5px">Learning quantum states of continuous variable systems (<a href="https://arxiv.org/pdf/2405.01431">https://arxiv.org/pdf/2405.01431</a>)</td><td id="_Sno" class="block-color-red" style="width:68.5px">arxiv</td><td id="hAMy" class="" style="width:68.5px">2024</td><td id="XMP]" class="" style="width:227.5px"></td></tr><tr id="582a1bfa-58d1-4df7-a24d-c64688b43b23"><td id="IYoD" class="" style="width:326.5px">Quantum similarity testing with convolutional neural networks (<a href="https://arxiv.org/pdf/2211.01668">https://arxiv.org/pdf/2211.01668</a>)</td><td id="_Sno" class="block-color-red" style="width:68.5px">PRL</td><td id="hAMy" class="" style="width:68.5px">2023</td><td id="XMP]" class="" style="width:227.5px"></td></tr></tbody></table><h2 id="38fef58f-321b-4756-8e9f-5ce89bc7130d" class="">quantum many-body system</h2><ul id="d3b05c09-d86e-4647-8b60-372636ea4d66" class="toggle"><li><details open=""><summary>e.g. prediction of state ground energy, classification of quantum phase</summary></details></li></ul><table id="60a12a91-b3e7-4a68-a325-94d11ddd00e6" class="simple-table"><tbody><tr id="ecaec0f6-ff3d-4aa7-a887-12da9fb4124f"><td id="yX;y" class="" style="width:253.5px">Quantum Many-Body Physics Calculations with Large Language Models (<a href="https://arxiv.org/pdf/2403.03154">https://arxiv.org/pdf/2403.03154</a>)</td><td id="dndj" class="block-color-red" style="width:150.5px">arxiv</td><td id="zR}i" class="" style="width:62.5px">2024</td><td id="i&gt;B|" class="" style="width:221.5px">By designing prompts, LLMs are able to accurately perform key calculations that presented theoretical physics research papers</td></tr><tr id="81d23903-2008-4321-8a86-bf9226fd2f39"><td id="yX;y" class="" style="width:253.5px">Machine-learning certification of multipartite entanglement for noisy quantum hardware (<a href="https://arxiv.org/pdf/2408.12349">https://arxiv.org/pdf/2408.12349</a>)</td><td id="dndj" class="block-color-red" style="width:150.5px">arxiv</td><td id="zR}i" class="" style="width:62.5px">2024</td><td id="i&gt;B|" class="" style="width:221.5px"></td></tr><tr id="6b7d9e38-3c1a-4947-af2d-0e587ff2d169"><td id="yX;y" class="" style="width:253.5px">Demonstration of Robust and Efficient Quantum Property Learning with Shallow Shadows(<a href="https://arxiv.org/pdf/2402.17911">https://arxiv.org/pdf/2402.17911</a>)</td><td id="dndj" class="block-color-red" style="width:150.5px">arxiv</td><td id="zR}i" class="" style="width:62.5px">2024</td><td id="i&gt;B|" class="" style="width:221.5px">Bayesian inference to  mitigate relevant noise model in postprocessing. </td></tr><tr id="12d82e0c-f6cc-4943-aced-21d7e29717ea"><td id="yX;y" class="" style="width:253.5px">Towards LLM4QPE: Unsupervised Pretraining of Quantum Property Estimation and A Benchmark (<a href="https://openreview.net/pdf?id=vrBVFXwAmi">https://openreview.net/pdf?id=vrBVFXwAmi</a>)</td><td id="dndj" class="block-color-red" style="width:150.5px">ICLR</td><td id="zR}i" class="" style="width:62.5px">2024</td><td id="i&gt;B|" class="" style="width:221.5px">auto-aggressive (non-supervised) of a pretrain model and finetune for somewhat property estimation task. embedding methods (token/position/condition).</td></tr><tr id="f32c7e80-e41a-4f40-a053-1ea510e66afc"><td id="yX;y" class="" style="width:253.5px">Improved machine learning algorithm for predicting ground state properties (<a href="https://www.nature.com/articles/s41467-024-45014-7">https://www.nature.com/articles/s41467-024-45014-7</a>)</td><td id="dndj" class="block-color-red" style="width:150.5px">Nature Communications</td><td id="zR}i" class="" style="width:62.5px">2024</td><td id="i&gt;B|" class="" style="width:221.5px"></td></tr><tr id="4a31d538-42b9-40d7-a83c-6808f085b0dc"><td id="yX;y" class="" style="width:253.5px">Entanglement-enhanced learning of quantum processes at scale (<a href="https://arxiv.org/pdf/2408.03376">https://arxiv.org/pdf/2408.03376</a>)</td><td id="dndj" class="block-color-red" style="width:150.5px">arxiv</td><td id="zR}i" class="" style="width:62.5px">2024</td><td id="i&gt;B|" class="" style="width:221.5px"></td></tr><tr id="e0ee3059-9274-4331-8c5b-81249927ec79"><td id="yX;y" class="" style="width:253.5px">Controlling nonergodicity in quantum many-body systems by reinforcement learning (<a href="https://arxiv.org/pdf/2408.11989">https://arxiv.org/pdf/2408.11989</a>)</td><td id="dndj" class="block-color-red" style="width:150.5px">arxiv</td><td id="zR}i" class="" style="width:62.5px">2024</td><td id="i&gt;B|" class="" style="width:221.5px"></td></tr><tr id="28e471a0-92ab-4def-8969-8ea64ca8bf8a"><td id="yX;y" class="" style="width:253.5px">Variational optimization of the amplitude of neural-network quantum many-body ground states (<a href="https://arxiv.org/pdf/2308.09664">https://arxiv.org/pdf/2308.09664</a>)</td><td id="dndj" class="block-color-red" style="width:150.5px">PRB</td><td id="zR}i" class="" style="width:62.5px">2024</td><td id="i&gt;B|" class="" style="width:221.5px"></td></tr><tr id="07c24cf5-2c89-4152-a6c7-096eb6ac11ae"><td id="yX;y" class="" style="width:253.5px">Deep learning of many-body observables and quantum information scrambling (<a href="https://quantum-journal.org/papers/q-2024-07-18-1417/pdf/">https://quantum-journal.org/papers/q-2024-07-18-1417/pdf/</a>)</td><td id="dndj" class="block-color-red" style="width:150.5px">Quantum</td><td id="zR}i" class="" style="width:62.5px">2024</td><td id="i&gt;B|" class="" style="width:221.5px"></td></tr><tr id="cfede463-639e-448c-b5ad-f4e90cd90d17"><td id="yX;y" class="" style="width:253.5px">Unified quantum state tomography and Hamiltonian learning using transformer models: a language-translation-like approach for quantum systems (<a href="https://arxiv.org/pdf/2304.12010">https://arxiv.org/pdf/2304.12010</a>)</td><td id="dndj" class="block-color-red" style="width:150.5px">PRA</td><td id="zR}i" class="" style="width:62.5px">2024</td><td id="i&gt;B|" class="" style="width:221.5px"></td></tr><tr id="b91736e1-245f-48c9-b932-f33622d33476"><td id="yX;y" class="" style="width:253.5px">Active learning for quantum mechanical measurements (<a href="https://journals.aps.org/pra/pdf/10.1103/PhysRevA.109.062404">https://journals.aps.org/pra/pdf/10.1103/PhysRevA.109.062404</a>)</td><td id="dndj" class="block-color-red" style="width:150.5px">PRA</td><td id="zR}i" class="" style="width:62.5px">2024</td><td id="i&gt;B|" class="" style="width:221.5px"></td></tr><tr id="e2b9018e-bd1a-4f0f-8c2f-a5c5817eccdd"><td id="yX;y" class="" style="width:253.5px">Shadownet for data-centric quantum system learning (<a href="https://arxiv.org/pdf/2308.11290">https://arxiv.org/pdf/2308.11290</a>)</td><td id="dndj" class="block-color-red" style="width:150.5px">arxiv</td><td id="zR}i" class="" style="width:62.5px">2023</td><td id="i&gt;B|" class="" style="width:221.5px"></td></tr><tr id="46c08193-7349-4850-b621-d743f0701771"><td id="yX;y" class="" style="width:253.5px">Learning quantum systems (<a href="https://www.nature.com/articles/s42254-022-00552-1">https://www.nature.com/articles/s42254-022-00552-1</a>)</td><td id="dndj" class="block-color-red" style="width:150.5px">Nature Reviews Physics</td><td id="zR}i" class="" style="width:62.5px">2023</td><td id="i&gt;B|" class="" style="width:221.5px"></td></tr><tr id="9b4c217b-a65a-4185-9ac7-715e4f3ff761"><td id="yX;y" class="" style="width:253.5px">Learning quantum properties from short-range correlations using multi-task networks (<a href="https://arxiv.org/pdf/2310.11807">https://arxiv.org/pdf/2310.11807</a>)</td><td id="dndj" class="block-color-red" style="width:150.5px">arxiv</td><td id="zR}i" class="" style="width:62.5px">2023</td><td id="i&gt;B|" class="" style="width:221.5px"></td></tr><tr id="f02ebff0-5138-4994-9742-b16a11b2307d"><td id="yX;y" class="" style="width:253.5px">Multimodal deep representation learning for quantum cross platform verification (<a href="https://arxiv.org/pdf/2311.03713">https://arxiv.org/pdf/2311.03713</a>)</td><td id="dndj" class="block-color-red" style="width:150.5px">PRL</td><td id="zR}i" class="" style="width:62.5px">2023</td><td id="i&gt;B|" class="" style="width:221.5px">not only considers the outcomes of measurement but also the layout of circuit. </td></tr><tr id="b8459d0e-1985-4ca8-ae42-386359c27407"><td id="yX;y" class="" style="width:253.5px">Entanglement verification with deep semi-supervised machine learning (<a href="https://arxiv.org/pdf/2308.15391">https://arxiv.org/pdf/2308.15391</a>)</td><td id="dndj" class="block-color-red" style="width:150.5px">PRA</td><td id="zR}i" class="" style="width:62.5px">2023</td><td id="i&gt;B|" class="" style="width:221.5px"></td></tr><tr id="000453f7-d696-408a-9865-8caea6fe613c"><td id="yX;y" class="" style="width:253.5px">Machine learning discovery of new phases in programmable quantum simulator snapshots (<a href="https://arxiv.org/pdf/2112.10789">https://arxiv.org/pdf/2112.10789</a>)</td><td id="dndj" class="block-color-red" style="width:150.5px">Physical Review Research</td><td id="zR}i" class="" style="width:62.5px">2023</td><td id="i&gt;B|" class="" style="width:221.5px"></td></tr><tr id="c1e6b689-ebe4-4632-9e37-4488b4f47a81"><td id="yX;y" class="" style="width:253.5px">Self-correcting quantum many-body control using reinforcement learning with tensor networks (<a href="https://arxiv.org/pdf/2201.11790">https://arxiv.org/pdf/2201.11790</a>)</td><td id="dndj" class="block-color-red" style="width:150.5px">Nature Machine Intelligence</td><td id="zR}i" class="" style="width:62.5px">2023</td><td id="i&gt;B|" class="" style="width:221.5px"></td></tr><tr id="405dec60-0046-4303-a89f-570008a75030"><td id="yX;y" class="" style="width:253.5px">Many-body control with reinforcement learning and tensor networks (<a href="https://www.nature.com/articles/s42256-023-00732-3">https://www.nature.com/articles/s42256-023-00732-3</a>)</td><td id="dndj" class="block-color-red" style="width:150.5px">Nature Machine Intelligence</td><td id="zR}i" class="" style="width:62.5px">2023</td><td id="i&gt;B|" class="" style="width:221.5px"></td></tr><tr id="753f08a9-7f1c-43c7-a100-d19c4b5cfc54"><td id="yX;y" class="" style="width:253.5px">Transformer quantum state: A multipurpose model for quantum many-body problems (<a href="https://arxiv.org/pdf/2208.01758">https://arxiv.org/pdf/2208.01758</a>)</td><td id="dndj" class="block-color-red" style="width:150.5px">PRB</td><td id="zR}i" class="" style="width:62.5px">2023</td><td id="i&gt;B|" class="" style="width:221.5px"></td></tr><tr id="cdcd387b-992b-4aef-92dc-a250fbb0acfe"><td id="yX;y" class="" style="width:253.5px">Bridging autoregressive neural networks and tensor networks for quantum many-body simulation (<a href="https://arxiv.org/pdf/2304.01996">https://arxiv.org/pdf/2304.01996</a>)</td><td id="dndj" class="block-color-red" style="width:150.5px">NIPS</td><td id="zR}i" class="" style="width:62.5px">2023</td><td id="i&gt;B|" class="" style="width:221.5px">combines tensor networks and autoregressive neural networks to enhance expressivity and inductive bias for efficient quantum many-body simulations</td></tr><tr id="dc1e5924-f08b-4ff9-96f0-727aefe490fc"><td id="yX;y" class="" style="width:253.5px">Predicting properties of quantum systems with conditional generative models (<a href="https://arxiv.org/pdf/2211.16943">https://arxiv.org/pdf/2211.16943</a>)</td><td id="dndj" class="block-color-red" style="width:150.5px">arxiv</td><td id="zR}i" class="" style="width:62.5px">2022</td><td id="i&gt;B|" class="" style="width:221.5px"></td></tr><tr id="7edae688-ce9a-4914-9724-f617346059b4"><td id="yX;y" class="" style="width:253.5px">Intelligent certification for quantum simulators via machine learning (<a href="https://www.nature.com/articles/s41534-022-00649-6">https://www.nature.com/articles/s41534-022-00649-6</a>)</td><td id="dndj" class="block-color-red" style="width:150.5px">npj Quantum Information</td><td id="zR}i" class="" style="width:62.5px">2022</td><td id="i&gt;B|" class="" style="width:221.5px"></td></tr><tr id="001c32f4-6ab9-48e6-b10c-41a876ba1e70"><td id="yX;y" class="" style="width:253.5px">Provably efficient machine learning for quantum many-body problems (<a href="https://arxiv.org/pdf/2106.12627">https://arxiv.org/pdf/2106.12627</a>)</td><td id="dndj" class="block-color-red" style="width:150.5px">Science</td><td id="zR}i" class="" style="width:62.5px">2022</td><td id="i&gt;B|" class="" style="width:221.5px"></td></tr><tr id="ad5bfe6e-1ed1-4b7a-bcc1-0fad016cd476"><td id="yX;y" class="" style="width:253.5px">Hardware-efficient learning of quantum many-body states (<a href="https://arxiv.org/pdf/2212.06084">https://arxiv.org/pdf/2212.06084</a>)</td><td id="dndj" class="block-color-red" style="width:150.5px">arxiv</td><td id="zR}i" class="" style="width:62.5px">2022</td><td id="i&gt;B|" class="" style="width:221.5px"></td></tr><tr id="592c14b0-a125-443d-b076-166aa6687b49"><td id="yX;y" class="" style="width:253.5px">Deep autoregressive models for the efficient variational simulation of many-body quantum systems (<a href="https://arxiv.org/pdf/1902.04057">https://arxiv.org/pdf/1902.04057</a>)</td><td id="dndj" class="block-color-red" style="width:150.5px">PRL</td><td id="zR}i" class="" style="width:62.5px">2020</td><td id="i&gt;B|" class="" style="width:221.5px"></td></tr><tr id="b385ff9b-952b-40c9-a3f2-5536fbb1e997"><td id="yX;y" class="" style="width:253.5px">Recurrent neural network wave functions (<a href="https://arxiv.org/pdf/2002.02973">https://arxiv.org/pdf/2002.02973</a>)</td><td id="dndj" class="block-color-red" style="width:150.5px">Physical Review Research</td><td id="zR}i" class="" style="width:62.5px">2020</td><td id="i&gt;B|" class="" style="width:221.5px">learn the approximate ground state of a quantum Hamiltonian</td></tr><tr id="7eebe21e-5505-47cc-b46e-dfebd613365c"><td id="yX;y" class="" style="width:253.5px">Finding the ground state of spin hamiltonians with reinforcement learning</td><td id="dndj" class="block-color-red" style="width:150.5px">Nature Machine Intelligence</td><td id="zR}i" class="" style="width:62.5px">2020</td><td id="i&gt;B|" class="" style="width:221.5px"></td></tr><tr id="b51c12eb-9ba7-4621-902d-8844d8a027d7"><td id="yX;y" class="" style="width:253.5px">Solving the quantum many-body problem with artificial neural networks (<a href="https://arxiv.org/pdf/1606.02318">https://arxiv.org/pdf/1606.02318</a>)</td><td id="dndj" class="block-color-red" style="width:150.5px">Science</td><td id="zR}i" class="" style="width:62.5px">2017</td><td id="i&gt;B|" class="" style="width:221.5px"></td></tr></tbody></table><h2 id="c34e9321-cdc3-40e4-955d-d9f04266e7f0" class="">quantum error correction</h2><table id="f727f456-21b2-4a93-97cd-9892f76da106" class="simple-table"><tbody><tr id="f334fc38-36c5-4de1-8788-01db9ccf56f5"><td id="{dBs" class="">Benchmarking Machine Learning Models for Quantum Error Correction (<a href="https://arxiv.org/pdf/2311.11167">https://arxiv.org/pdf/2311.11167</a>)</td><td id="YUxQ" class="block-color-red">arxiv</td><td id="Ygep" class="">2024</td><td id="d[Dq" class=""></td></tr><tr id="82990160-aa15-4253-822b-8f961993fc9c"><td id="{dBs" class="">DGR: Tackling Drifted and Correlated Noise in Quantum Error Correction via Decoding Graph Re-weighting (<a href="https://arxiv.org/pdf/2311.16214">https://arxiv.org/pdf/2311.16214</a>)</td><td id="YUxQ" class="block-color-red">arxiv</td><td id="Ygep" class="">2024</td><td id="d[Dq" class=""></td></tr><tr id="3897ca82-cc10-4d27-8615-a3f75be0601b"><td id="{dBs" class="">qecGPT: decoding Quantum Error-correcting Codes with Generative Pre-trained Transformers (<a href="https://arxiv.org/pdf/2307.09025">https://arxiv.org/pdf/2307.09025</a>)</td><td id="YUxQ" class="block-color-red">arxiv</td><td id="Ygep" class="">2024</td><td id="d[Dq" class=""></td></tr><tr id="fa4fa2c1-1f7c-46e2-8286-e12ce081f97c"><td id="{dBs" class="">Deep Quantum Error Correction (<a href="https://ojs.aaai.org/index.php/AAAI/article/view/27756">https://ojs.aaai.org/index.php/AAAI/article/view/27756</a>)</td><td id="YUxQ" class="block-color-red">AAAI</td><td id="Ygep" class="">2024</td><td id="d[Dq" class="">end-to-end deep quantum error decoders. </td></tr><tr id="97e1e9c4-44fe-446f-8c59-6695b2efa7ff"><td id="{dBs" class="">Transformer-QEC: Quantum Error Correction Code Decoding with Transferable Transformers (<a href="https://arxiv.org/pdf/2311.16082">https://arxiv.org/pdf/2311.16082</a>)</td><td id="YUxQ" class="block-color-red">ICCAD Workshop</td><td id="Ygep" class="">2023</td><td id="d[Dq" class=""></td></tr><tr id="a934d896-2556-4d42-b352-f6b1df9ceb57"><td id="{dBs" class="">Astrea: Accurate quantum error-decoding via practical minimum-weight perfect-matching (<a href="https://memlab.ece.gatech.edu/papers/ISCA_2023_1.pdf">https://memlab.ece.gatech.edu/papers/ISCA_2023_1.pdf</a>)</td><td id="YUxQ" class="block-color-red">ISCA</td><td id="Ygep" class="">2023</td><td id="d[Dq" class=""></td></tr><tr id="d4256e17-b007-4dd2-814b-3d371b8737b0"><td id="{dBs" class="">A scalable and fast artificial neural<br/>network syndrome decoder for surface codes (<br/><a href="https://arxiv.org/pdf/2110.05854">https://arxiv.org/pdf/2110.05854</a>)</td><td id="YUxQ" class="block-color-red">Quantum</td><td id="Ygep" class="">2023</td><td id="d[Dq" class=""></td></tr><tr id="e087eaa3-b5a7-4998-a8da-dd323b6a0482"><td id="{dBs" class="">Decoding surface code with a distributed neural network–based decoder (<a href="https://arxiv.org/pdf/1901.10847">https://arxiv.org/pdf/1901.10847</a>)</td><td id="YUxQ" class="block-color-red">Quantum Machine Intelligence</td><td id="Ygep" class="">2020</td><td id="d[Dq" class=""></td></tr><tr id="4e4eea78-74ef-4471-9155-e049ef604f7c"><td id="{dBs" class="">Decoding surface code with a distributed neural network based decoder (<a href="https://arxiv.org/pdf/1901.10847">https://arxiv.org/pdf/1901.10847</a>)</td><td id="YUxQ" class="block-color-red">arxiv</td><td id="Ygep" class="">2019</td><td id="d[Dq" class=""></td></tr></tbody></table><h2 id="57462107-8870-4476-989c-5c953186617c" class="">quantum error mitigation</h2><table id="67dbe925-f2bd-4ebc-9be8-e5978e6f7b6e" class="simple-table"><tbody><tr id="fecc5c2f-fc34-4e8e-888f-080bf7f7d4f1"><td id="raSF" class="">A Machine Learning-Based Error Mitigation Approach for Reliable Software Development on IBM’s Quantum Computers (<a href="https://arxiv.org/pdf/2404.12892">https://arxiv.org/pdf/2404.12892</a>)</td><td id="mh`_" class="block-color-red">FSE</td><td id="nLLN" class="">2024</td><td id="gF?b" class="">uses the same pseudo oracle as QRAFT, but divides a quantum circuit into smaller subcircuits to avoid doubling the original circuit depth</td></tr><tr id="048f08d5-d2a7-47df-94b5-ae5089e3b410"><td id="raSF" class="">Machine Learning for Practical Quantum Error Mitigation (<a href="https://arxiv.org/pdf/2309.17368">https://arxiv.org/pdf/2309.17368</a>)</td><td id="mh`_" class="block-color-red">NIPS Workshop  / APS March Meeting 2024</td><td id="nLLN" class="">2023</td><td id="gF?b" class="">ML-based QEM benchmark (OLS/DT/MLP/GNN). Code is opensourced.</td></tr><tr id="1c06d387-c4f6-4b0f-b08f-420b9c8b4134"><td id="raSF" class="">Improving the efficiency of learning-based error mitigation (<a href="https://arxiv.org/pdf/2204.07109">https://arxiv.org/pdf/2204.07109</a>)</td><td id="mh`_" class="block-color-red">arxiv</td><td id="nLLN" class="">2022</td><td id="gF?b" class="">Clifford data regression</td></tr><tr id="6abbd122-e3de-4b0a-929f-3a21525586c6"><td id="raSF" class="">Error mitigation with Clifford quantum-circuit data (<a href="https://arxiv.org/pdf/2005.10189">https://arxiv.org/pdf/2005.10189</a>)</td><td id="mh`_" class="block-color-red">Quantum</td><td id="nLLN" class="">2021</td><td id="gF?b" class="">Clifford data regression: employs near-Clifford quantum circuits as training data to develop a regression model that mitigates noise</td></tr><tr id="e43a5a19-a9b3-459c-b6de-b5d5bc081fc7"><td id="raSF" class="">Learning-based quantum error mitigation (<a href="https://arxiv.org/pdf/2005.07601">https://arxiv.org/pdf/2005.07601</a>)</td><td id="mh`_" class="block-color-red">PRX Quantum</td><td id="nLLN" class="">2021</td><td id="gF?b" class="">Learning-based PEC: generates multiple variants of the target quantum circuit by replacing non-Clifford gates with gates that are easier to simulate classically. The execution of these variants is then used as training data for a probabilistic noise mitigation model</td></tr><tr id="9cff255e-8695-42fc-8c6f-941c9558c63f"><td id="raSF" class="">QRAFT: Reverse your quantum circuit and know the correct program output (<a href="https://par.nsf.gov/servlets/purl/10309262">https://par.nsf.gov/servlets/purl/10309262</a>)</td><td id="mh`_" class="block-color-red">ASPLOS</td><td id="nLLN" class="">2021</td><td id="gF?b" class="">leverages the reversibility of quantum circuits as a pseudo oracle for training a noise mitigation regression model</td></tr></tbody></table><h2 id="9cca8439-f1db-4c52-affa-2b78d6988b81" class="">quantum circuit optimization/search</h2><table id="5ebddd6d-af8a-4ab0-b9b5-8f6d99cc8212" class="simple-table"><tbody><tr id="f491fe77-40fa-454d-b156-fb2434edfd7c"><td id="Gwze" class="" style="width:311.5px">Quantum Circuit Optimization using Differentiable Programming of Tensor Network States (<a href="https://arxiv.org/pdf/2408.12583">https://arxiv.org/pdf/2408.12583</a>)</td><td id="L@]Q" class="block-color-red" style="width:94.5px">arxiv</td><td id="Rjz&gt;" class="" style="width:62.5px">2024</td><td id="_`&gt;P" class="" style="width:222.5px"></td></tr><tr id="05b56bb7-0501-483a-8468-28bde15238b8"><td id="Gwze" class="" style="width:311.5px">QuantumSEA: In-Time Sparse Exploration for Noise Adaptive Quantum Circuits (<a href="https://arxiv.org/pdf/2401.05571">https://arxiv.org/pdf/2401.05571</a>)</td><td id="L@]Q" class="block-color-red" style="width:94.5px">QCE</td><td id="Rjz&gt;" class="" style="width:62.5px">2023</td><td id="_`&gt;P" class="" style="width:222.5px"></td></tr><tr id="d1ee966a-9cac-42bf-9868-54c896dbc076"><td id="Gwze" class="" style="width:311.5px">SnCQA: A hardware-efficient equivariant quantum convolutional circuit architecture (<a href="https://arxiv.org/pdf/2211.12711">https://arxiv.org/pdf/2211.12711</a>)</td><td id="L@]Q" class="block-color-red" style="width:94.5px">QCE </td><td id="Rjz&gt;" class="" style="width:62.5px">2023</td><td id="_`&gt;P" class="" style="width:222.5px"></td></tr><tr id="da789735-9ff6-4721-af97-871f0c3446d2"><td id="Gwze" class="" style="width:311.5px">QuantumNAS: Noise-Adaptive Search for Robust Quantum Circuits (<a href="https://arxiv.org/pdf/2107.10845">https://arxiv.org/pdf/2107.10845</a>)</td><td id="L@]Q" class="block-color-red" style="width:94.5px">HPCA</td><td id="Rjz&gt;" class="" style="width:62.5px">2022</td><td id="_`&gt;P" class="" style="width:222.5px"></td></tr><tr id="d3c72e5e-34ac-4fb9-9d18-5c4e69fe0d1d"><td id="Gwze" class="" style="width:311.5px">QuantumNAT: Quantum Noise-Aware Training with Noise Injection, Quantization and Normalization (<a href="https://arxiv.org/pdf/2110.11331">https://arxiv.org/pdf/2110.11331</a>)</td><td id="L@]Q" class="block-color-red" style="width:94.5px">DAC</td><td id="Rjz&gt;" class="" style="width:62.5px">2022</td><td id="_`&gt;P" class="" style="width:222.5px"></td></tr><tr id="7a92a030-1b8c-4800-a0d2-f6e2c60c96e1"><td id="Gwze" class="" style="width:311.5px">QuEst: Graph Transformer for Quantum Circuit Reliability Estimation (<a href="https://arxiv.org/pdf/2210.16724">https://arxiv.org/pdf/2210.16724</a>)</td><td id="L@]Q" class="block-color-red" style="width:94.5px">ICCAD</td><td id="Rjz&gt;" class="" style="width:62.5px">2022</td><td id="_`&gt;P" class="" style="width:222.5px"></td></tr><tr id="0a9795e8-47a0-4760-852c-b12af89e04a3"><td id="Gwze" class="" style="width:311.5px">QOC: quantum on-chip training with parameter shift and gradient pruning (<a href="https://arxiv.org/pdf/2202.13239">https://arxiv.org/pdf/2202.13239</a>)</td><td id="L@]Q" class="block-color-red" style="width:94.5px">DAC</td><td id="Rjz&gt;" class="" style="width:62.5px">2022</td><td id="_`&gt;P" class="" style="width:222.5px"></td></tr><tr id="33d22088-d52d-40d3-aa1d-5d832d20944b"><td id="Gwze" class="" style="width:311.5px">Reinforcement learning for optimization of variational quantum circuit architectures (<a href="https://arxiv.org/pdf/2103.16089">https://arxiv.org/pdf/2103.16089</a>)</td><td id="L@]Q" class="block-color-red" style="width:94.5px">NIPS</td><td id="Rjz&gt;" class="" style="width:62.5px">2021</td><td id="_`&gt;P" class="" style="width:222.5px"></td></tr><tr id="0c972697-eaef-4956-b672-cbd3092e97dc"><td id="Gwze" class="" style="width:311.5px">Quantum architecture search via deep reinforcement learning (<a href="https://arxiv.org/pdf/2104.07715">https://arxiv.org/pdf/2104.07715</a>)</td><td id="L@]Q" class="block-color-red" style="width:94.5px">arxiv</td><td id="Rjz&gt;" class="" style="width:62.5px">2021</td><td id="_`&gt;P" class="" style="width:222.5px"></td></tr><tr id="137d7cdb-2881-433a-804f-e2a608abc92a"><td id="Gwze" class="" style="width:311.5px">Quantum circuit optimization with deep reinforcement learning (<a href="https://arxiv.org/pdf/2103.07585">https://arxiv.org/pdf/2103.07585</a>)</td><td id="L@]Q" class="block-color-red" style="width:94.5px">arxiv</td><td id="Rjz&gt;" class="" style="width:62.5px">2021</td><td id="_`&gt;P" class="" style="width:222.5px"></td></tr></tbody></table><h2 id="2e2260fe-2b8d-4405-ac8e-741eb3493c73" class="">Others</h2><table id="882eb961-ec93-43fb-b7a1-a58ea3e25960" class="simple-table"><tbody><tr id="e55b0b23-c2a8-4978-bd9c-e2738395f10b"><td id="Gn_d" class="" style="width:248px">CHEMREASONER: Heuristic Search over a Large Language Model’s Knowledge Space using Quantum Chemical Feedback (<a href="https://arxiv.org/pdf/2402.10980">https://arxiv.org/pdf/2402.10980</a>)</td><td id="OZCv" class="block-color-red">ICML</td><td id="hzJB" class="" style="width:60px">2024</td><td id="K`Ls" class="" style="width:255px">LLM for quantum chemistry</td></tr><tr id="15b9245a-a9b9-40a9-8c95-5c6c5b450c23"><td id="Gn_d" class="" style="width:248px">Dynamic Inhomogeneous Quantum Resource Scheduling with Reinforcement Learning (<a href="https://arxiv.org/pdf/2405.16380">https://arxiv.org/pdf/2405.16380</a>)</td><td id="OZCv" class="block-color-red">arxiv</td><td id="hzJB" class="" style="width:60px">2024</td><td id="K`Ls" class="" style="width:255px">Quantum Resource Schedule</td></tr><tr id="1d488570-79e0-4ee9-8f40-948a5ce3bce0"><td id="Gn_d" class="" style="width:248px">AI methods for approximate compiling of unitaries (<a href="https://arxiv.org/pdf/2407.21225">https://arxiv.org/pdf/2407.21225</a>)</td><td id="OZCv" class="block-color-red">QCE</td><td id="hzJB" class="" style="width:60px">2024</td><td id="K`Ls" class="" style="width:255px">unitary gates synthesis</td></tr><tr id="2426fac7-244c-4f9d-bf48-bd57afacba2e"><td id="Gn_d" class="" style="width:248px">AlphaRouter: Quantum Circuit Routing with Reinforcement Learning and Tree Search</td><td id="OZCv" class="block-color-red">QCE</td><td id="hzJB" class="" style="width:60px">2024</td><td id="K`Ls" class="" style="width:255px">quantum circuit routing</td></tr><tr id="50b37267-08e4-4b8b-9bd0-65bf8a4758c6"><td id="Gn_d" class="" style="width:248px">LLM-Generated Tips Rival Expert-Created Tips in Helping Students Answer Quantum-Computing Questions (<a href="https://arxiv.org/pdf/2407.17024">https://arxiv.org/pdf/2407.17024</a>)</td><td id="OZCv" class="block-color-red">arxiv</td><td id="hzJB" class="" style="width:60px">2024</td><td id="K`Ls" class="" style="width:255px">LLM for quantum education</td></tr><tr id="262938da-b1d2-4ed5-9137-1ec540b0c0ef"><td id="Gn_d" class="" style="width:248px">Variational Monte Carlo on a Budget — Finetuning pretrained Neural Wavefunctions (<a href="https://proceedings.neurips.cc/paper_files/paper/2023/file/4b5721f7fcc1672930d860e0dfcfee84-Paper-Conference.pdf">https://proceedings.neurips.cc/paper_files/paper/2023/file/4b5721f7fcc1672930d860e0dfcfee84-Paper-Conference.pdf</a>)</td><td id="OZCv" class="block-color-red">NIPS</td><td id="hzJB" class="" style="width:60px">2023</td><td id="K`Ls" class="" style="width:255px">MC learning for quantum chemistry</td></tr><tr id="bb72a043-0783-4412-b53d-c9db1b40fec8"><td id="Gn_d" class="" style="width:248px">Unleashing the Potential of LLMs for Quantum Computing: A Study in Quantum Architecture Design (<a href="https://arxiv.org/pdf/2307.08191">https://arxiv.org/pdf/2307.08191</a>)</td><td id="OZCv" class="block-color-red">arxiv</td><td id="hzJB" class="" style="width:60px">2023</td><td id="K`Ls" class="" style="width:255px">LLM for quantum circuit design</td></tr><tr id="6f580e17-f91a-4432-8527-11facf50fe51"><td id="Gn_d" class="" style="width:248px">Optimizing quantum annealing schedules with monte carlo tree search enhanced with neural networks</td><td id="OZCv" class="block-color-red">arxiv</td><td id="hzJB" class="" style="width:60px">2022</td><td id="K`Ls" class="" style="width:255px"></td></tr><tr id="0135b523-5732-4f2b-9fca-b684b1078349"><td id="Gn_d" class="" style="width:248px">Using reinforcement learning to find efficient qubit routing policies for deployment in near-term quantum computers</td><td id="OZCv" class="block-color-red">arxiv</td><td id="hzJB" class="" style="width:60px">2018</td><td id="K`Ls" class="" style="width:255px">quantum circuit routing</td></tr></tbody></table><p id="8df87cb0-aee0-43eb-a43b-42dc2c4d6328" class="">
+</p><h3 id="d3fc242c-e914-4406-91df-62c8a7a80e43" class="">quantum Experiments design</h3><table id="0b8304f5-c12c-4c65-9d40-1f10e67baa1f" class="simple-table"><tbody><tr id="707e5697-1526-400c-8277-0c5a4551bf21"><td id="kuiG" class="" style="width:372.5px">Meta-Designing Quantum Experiments with Language Models (<a href="https://arxiv.org/pdf/2406.02470">https://arxiv.org/pdf/2406.02470</a>)</td><td id="O&gt;{R" class="block-color-red" style="width:71.5px">arxiv</td><td id="hvq_" class="" style="width:65.5px">2024</td><td id="N]AN" class="" style="width:177.5px"></td></tr><tr id="2733c383-488f-46ad-bc85-a7dd00f88d3b"><td id="kuiG" class="" style="width:372.5px">Qiskit HumanEval: An Evaluation Benchmark For Quantum Code Generative Models (<a href="https://arxiv.org/pdf/2406.14712">https://arxiv.org/pdf/2406.14712</a>)</td><td id="O&gt;{R" class="block-color-red" style="width:71.5px">arxiv</td><td id="hvq_" class="" style="width:65.5px">2024</td><td id="N]AN" class="" style="width:177.5px"></td></tr><tr id="b65ac76b-4942-445b-96d5-3c321e84c660"><td id="kuiG" class="" style="width:372.5px">Qiskit Code Assistant: Training LLMs for generating Quantum Computing Code (<a href="https://arxiv.org/pdf/2405.19495">https://arxiv.org/pdf/2405.19495</a>)</td><td id="O&gt;{R" class="block-color-red" style="width:71.5px">arxiv</td><td id="hvq_" class="" style="width:65.5px">2024</td><td id="N]AN" class="" style="width:177.5px"></td></tr></tbody></table><h3 id="95bced1b-ad13-4114-bf5e-fb69abb1d8cb" class="">optimizing VQAs</h3><table id="f7fd878d-4e78-4bef-aa1d-f5e6a4909c6f" class="simple-table"><tbody><tr id="13637d38-41d4-4a74-94da-8371d763fdcb"><td id="kmkL" class="" style="width:320px">Graph Machine Learning for Variational Quantum Algorithms (<a href="https://arxiv.org/pdf/2311.17423">https://arxiv.org/pdf/2311.17423</a>)</td><td id="&lt;gip" class="block-color-red" style="width:71px">DAC</td><td id="_He_" class="" style="width:59px">2024</td><td id="Jtqj" class=""></td></tr><tr id="083e1e56-3bc3-42c5-a185-242f73b8f459"><td id="kmkL" class="" style="width:320px">Graph Neural Networks for Parameterized Quantum Circuits Expressibility Estimation (<a href="https://arxiv.org/pdf/2405.08100">https://arxiv.org/pdf/2405.08100</a>)</td><td id="&lt;gip" class="block-color-red" style="width:71px">arxiv</td><td id="_He_" class="" style="width:59px">2024</td><td id="Jtqj" class=""></td></tr><tr id="9ff4a481-d670-41c2-b84b-32deee7bcc3b"><td id="kmkL" class="" style="width:320px">Improving Quantum Classifier Performance in NISQ Computers by Voting Strategy from Ensemble Learning (<a href="https://arxiv.org/pdf/2210.01656">https://arxiv.org/pdf/2210.01656</a>)</td><td id="&lt;gip" class="block-color-red" style="width:71px">arxiv</td><td id="_He_" class="" style="width:59px">2022</td><td id="Jtqj" class="">Ensemble weak quantum classifiers and plurality voting </td></tr></tbody></table><p id="0ad51ba0-bcba-40b4-8152-43395b1b5745" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
