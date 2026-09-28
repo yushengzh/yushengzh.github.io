@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="640" height="350" preserveAspectRatio="xMinYMin meet" viewBox="0 0 640 350" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="640" height="350"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-350)" style="clip-path: url(#clip)">
+		<g transform="">
+			<path d="M 57,65 L 623,65 Z" style="stroke: rgb(89%,90%,92%); stroke-linecap: butt; stroke-width: 0.55;"/>
+			<path d="M 54,65 L 57,65 Z" style="stroke: rgb(39%,43%,47%); stroke-linecap: butt; stroke-width: 0.65;"/>
+			<text x="42.2861328125" y="61.3" style="font-family:ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-size: 11px;fill: rgb(14%,20%,24%); stroke:none;" transform="translate(0,122) scale(1,-1)">0</text>
+			<path d="M 57,114.4 L 623,114.4 Z" style="stroke: rgb(89%,90%,92%); stroke-linecap: butt; stroke-width: 0.55;"/>
+			<path d="M 54,114.4 L 57,114.4 Z" style="stroke: rgb(39%,43%,47%); stroke-linecap: butt; stroke-width: 0.65;"/>
+			<text x="35.572265625" y="110.7" style="font-family:ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-size: 11px;fill: rgb(14%,20%,24%); stroke:none;" transform="translate(0,221) scale(1,-1)">20</text>
+			<path d="M 57,163.8 L 623,163.8 Z" style="stroke: rgb(89%,90%,92%); stroke-linecap: butt; stroke-width: 0.55;"/>
+			<path d="M 54,163.8 L 57,163.8 Z" style="stroke: rgb(39%,43%,47%); stroke-linecap: butt; stroke-width: 0.65;"/>
+			<text x="35.572265625" y="160.10000000000002" style="font-family:ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-size: 11px;fill: rgb(14%,20%,24%); stroke:none;" transform="translate(0,320) scale(1,-1)">40</text>
+			<path d="M 57,213.2 L 623,213.2 Z" style="stroke: rgb(89%,90%,92%); stroke-linecap: butt; stroke-width: 0.55;"/>
+			<path d="M 54,213.2 L 57,213.2 Z" style="stroke: rgb(39%,43%,47%); stroke-linecap: butt; stroke-width: 0.65;"/>
+			<text x="35.572265625" y="209.5" style="font-family:ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-size: 11px;fill: rgb(14%,20%,24%); stroke:none;" transform="translate(0,419) scale(1,-1)">60</text>
+			<path d="M 57,262.6 L 623,262.6 Z" style="stroke: rgb(89%,90%,92%); stroke-linecap: butt; stroke-width: 0.55;"/>
+			<path d="M 54,262.6 L 57,262.6 Z" style="stroke: rgb(39%,43%,47%); stroke-linecap: butt; stroke-width: 0.65;"/>
+			<text x="35.572265625" y="258.90000000000003" style="font-family:ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-size: 11px;fill: rgb(14%,20%,24%); stroke:none;" transform="translate(0,517) scale(1,-1)">80</text>
+			<path d="M 57,312 L 623,312 Z" style="stroke: rgb(89%,90%,92%); stroke-linecap: butt; stroke-width: 0.55;"/>
+			<path d="M 54,312 L 57,312 Z" style="stroke: rgb(39%,43%,47%); stroke-linecap: butt; stroke-width: 0.65;"/>
+			<text x="30.6201171875" y="308.3" style="font-family:ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-size: 11px;fill: rgb(14%,20%,24%); stroke:none;" transform="translate(0,616) scale(1,-1)">100</text>
+			<path d="M 57,65 L 623,65 Z" style="stroke: rgb(39%,43%,47%); stroke-linecap: butt; stroke-width: 0.7;"/>
+			<path d="M 57,65 L 57,312 Z" style="stroke: rgb(39%,43%,47%); stroke-linecap: butt; stroke-width: 0.7;"/>
+			<g transform=" matrix(0,1,-1,0,16,188.5)">
+				<text x="-32.046142578125" y="0" style="font-family:ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-size: 13px;fill: rgb(14%,20%,24%); stroke:none;" transform="translate(0,0) scale(1,-1)">Errors (%)</text>
+			</g>
+			<rect x="82.6" y="65" width="19.0" height="7.23430962343096" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,44%,69%); fill-rule: evenodd;"/>
+			<rect x="104.1" y="65" width="19.0" height="3.014821272885783" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(83%,36%,0%); fill-rule: evenodd;"/>
+			<rect x="125.6" y="65" width="19.0" height="0.2512716174974514" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,61%,45%); fill-rule: evenodd;"/>
+			<text x="89.45756835937499" y="45" style="font-family:ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-size: 10.6px;fill: rgb(14%,20%,24%); stroke:none;" transform="translate(0,90) scale(1,-1)">No usable</text>
+			<text x="96.45781249999999" y="31" style="font-family:ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-size: 10.6px;fill: rgb(14%,20%,24%); stroke:none;" transform="translate(0,62) scale(1,-1)">answer</text>
+			<rect x="195.8" y="65" width="19.0" height="198.42677824267787" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,44%,69%); fill-rule: evenodd;"/>
+			<rect x="217.3" y="65" width="19.0" height="184.98081952920663" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(83%,36%,0%); fill-rule: evenodd;"/>
+			<rect x="238.8" y="65" width="19.0" height="170.11088504577822" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,61%,45%); fill-rule: evenodd;"/>
+			<text x="202.40395507812502" y="45" style="font-family:ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-size: 10.6px;fill: rgb(14%,20%,24%); stroke:none;" transform="translate(0,90) scale(1,-1)">Incorrect</text>
+			<text x="207.641845703125" y="31" style="font-family:ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-size: 10.6px;fill: rgb(14%,20%,24%); stroke:none;" transform="translate(0,62) scale(1,-1)">relation</text>
+			<rect x="309.0" y="65" width="19.0" height="46.299581589958166" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,44%,69%); fill-rule: evenodd;"/>
+			<rect x="330.5" y="65" width="19.0" height="64.60331299040976" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(83%,36%,0%); fill-rule: evenodd;"/>
+			<rect x="352.0" y="65" width="19.0" height="76.6378433367243" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,61%,45%); fill-rule: evenodd;"/>
+			<text x="307.384814453125" y="45" style="font-family:ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-size: 10.6px;fill: rgb(14%,20%,24%); stroke:none;" transform="translate(0,90) scale(1,-1)">Parameter or</text>
+			<text x="301.61640625" y="31" style="font-family:ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-size: 10.6px;fill: rgb(14%,20%,24%); stroke:none;" transform="translate(0,62) scale(1,-1)">numerical error</text>
+			<rect x="422.2" y="65" width="19.0" height="86.19163179916319" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,44%,69%); fill-rule: evenodd;"/>
+			<rect x="443.7" y="65" width="19.0" height="66.75675675675677" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(83%,36%,0%); fill-rule: evenodd;"/>
+			<rect x="465.2" y="65" width="19.0" height="1.7589013224822025" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,61%,45%); fill-rule: evenodd;"/>
+			<text x="431.4099609375" y="45" style="font-family:ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-size: 10.6px;fill: rgb(14%,20%,24%); stroke:none;" transform="translate(0,90) scale(1,-1)">Evidence</text>
+			<text x="409.77260742187497" y="31" style="font-family:ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-size: 10.6px;fill: rgb(14%,20%,24%); stroke:none;" transform="translate(0,62) scale(1,-1)">misinterpretation</text>
+			<rect x="535.4000000000001" y="65" width="19.0" height="32.24435146443514" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,44%,69%); fill-rule: evenodd;"/>
+			<rect x="556.9000000000001" y="65" width="19.0" height="20.67306015693113" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(83%,36%,0%); fill-rule: evenodd;"/>
+			<rect x="578.4000000000001" y="65" width="19.0" height="5.527975584944045" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(0%,61%,45%); fill-rule: evenodd;"/>
+			<text x="516.5287597656251" y="45" style="font-family:ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-size: 10.6px;fill: rgb(14%,20%,24%); stroke:none;" transform="translate(0,90) scale(1,-1)">Explanation–formula</text>
+			<text x="543.1063964843751" y="31" style="font-family:ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-size: 10.6px;fill: rgb(14%,20%,24%); stroke:none;" transform="translate(0,62) scale(1,-1)">mismatch</text>
+			<rect x="183.837158203125" y="332" width="13.0" height="8" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(0%,44%,69%); fill-rule: evenodd;"/>
+			<text x="202.837158203125" y="331" style="font-family:ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-size: 11px;fill: rgb(14%,20%,24%); stroke:none;" transform="translate(0,662) scale(1,-1)">GPT-5.5</text>
+			<rect x="268.264404296875" y="332" width="13.0" height="8" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(83%,36%,0%); fill-rule: evenodd;"/>
+			<text x="287.264404296875" y="331" style="font-family:ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-size: 11px;fill: rgb(14%,20%,24%); stroke:none;" transform="translate(0,662) scale(1,-1)">GPT-5.6 Sol</text>
+			<rect x="372.403564453125" y="332" width="13.0" height="8" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(0%,61%,45%); fill-rule: evenodd;"/>
+			<text x="391.403564453125" y="331" style="font-family:ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-size: 11px;fill: rgb(14%,20%,24%); stroke:none;" transform="translate(0,662) scale(1,-1)">GPT-6 Astra</text>
+		</g>
+	</g>
+</svg>
