@@ -1,1 +1,1 @@
-[]
+[{"v":0,"par":null,"chg":"method=TF-IDF(title+text,cosine,top100) (selfcheck, all 204 dev) kept(baseline snapshot)","sc":"score=0.1830","val":0.183,"st":"kept","code":"486c758733e387a58088","diff":null}]
