@@ -729,7 +729,7 @@ table.list tbody tr[data-v] { cursor: pointer; } table.list tbody tr[data-v]:hov
     try { DATA = await getJSON("data.json"); } catch (e) { $("#app").innerHTML = '<div class="empty">Could not load results.</div>'; return; }
     renderTopbar();
     route();
-    setInterval(refresh, 10 * 60 * 1000);  // the site is regenerated every 10 minutes
+    setInterval(refresh, 60 * 60 * 1000);  // the site is regenerated every hour
     setInterval(() => DATA && renderTopbar(), 30 * 1000);  // the relative time ticks without refetching (as on SCiEL)
   })();
 })();
