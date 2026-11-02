@@ -2,7 +2,7 @@
 """BM25 retrieval over title+text with light plural normalization.
 
 Tuned on the 103 visible nfcorpus dev queries (selfcheck.py). Config from
-sweep2: k1=2.4, b=0.4, idf=log1p, plur=True -> 0.3299 (baseline TF-IDF 0.3155).
+sweep2: k1=3.0, b=0.4, idf=log1p, plur=True -> 0.33454 (baseline TF-IDF 0.3155).
 
 Output: {"rankings": {query_id: [doc_id, ...]}} for every query, saved via
 torch.save to keep the .pt format the pipeline expects.
@@ -19,7 +19,7 @@ from pathlib import Path
 import numpy as np
 
 TOKEN = re.compile(r"[a-z0-9]+")
-K1 = 2.4
+K1 = 3.0
 B = 0.4
 TOPK = 100
 
