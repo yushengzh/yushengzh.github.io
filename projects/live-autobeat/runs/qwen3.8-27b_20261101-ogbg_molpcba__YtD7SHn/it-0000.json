@@ -1,1 +1,1 @@
-[]
+[{"v":0,"par":null,"chg":"(baseline 2-layer GIN-lite, mean pool, no embeddings, subsample 4000/ep x5ep) kept","sc":"score=0.0357","val":0.0357,"st":"kept","code":"ad0cfdfcca6f6dc69f72","diff":null}]
