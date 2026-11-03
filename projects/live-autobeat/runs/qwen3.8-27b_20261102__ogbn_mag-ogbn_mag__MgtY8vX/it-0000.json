@@ -1,0 +1,1 @@
+[{"v":0,"par":null,"chg":"baseline 2-layer CPU GCN H=32 dropout=0.5 epochs=30 lr=0.01: too slow (selfcheck CPU run times out). reverted (kept as snapshot only)","sc":"score=0.0000","val":0.0,"st":"reverted","code":"26558607ebc3ed7456ba","diff":null}]
