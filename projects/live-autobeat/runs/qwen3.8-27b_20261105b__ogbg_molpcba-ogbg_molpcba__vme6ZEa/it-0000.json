@@ -1,1 +1,1 @@
-[]
+[{"v":4,"par":0,"chg":"GIN H=128 L=5, per-col atom emb(1152)->128, per-edge bond+stereo+ring emb SUMMED, MEAN in-aggregation, learnable eps, MLP x2, SUM pooling+LayerNorm, head 128->64->128. AdamW lr=1e-3 wd=1e-5, cosine LR","sc":"score=0.0978","val":0.0978,"st":"kept","code":"adf335bd2ef7f31075bf","diff":null}]
