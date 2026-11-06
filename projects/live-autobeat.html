@@ -393,7 +393,7 @@ table.list tbody tr[data-v] { cursor: pointer; } table.list tbody tr[data-v]:hov
       '<div class="ptop"><div style="min-width:0"><div class="pname">' + esc(t.name) + '</div>' +
       '<div class="pfam">' + esc(t.field) + ' · ' + esc(t.metric) + ' · ' + (t.direction === "min" ? "minimise" : "maximise") + '</div></div>' + statusPill(st) + '</div>' +
       chips + spark(t, c) + prog + meta +
-      '<div class="vals"><div><div class="k">Baseline</div><div class="v" title="' + esc(a.baseline_self) + '">' + fmt(a.baseline_self) + '</div><div class="s">starting method</div></div>' +
+      '<div class="vals"><div><div class="k">Baseline</div><div class="v" title="' + esc(a.baseline_self) + '">' + fmt(a.baseline_self) + '</div><div class="s">weak baseline</div></div>' +
       '<div class="ours"><div class="k">' + oursK + '</div><div class="v" title="' + esc(c && c.best) + '">' + fmt(c && c.best) + '</div><div class="s">' + esc(oursS) + '</div></div>' +
       '<div><div class="k">Literature</div><div class="v" title="' + esc(a.sota_reported) + '">' + fmt(a.sota_reported) + '</div><div class="s">sota (self) ' + fmt(a.sota_self) + '</div></div></div>' +
       '<div class="pfoot"><span class="l">' + badge(t, c) + noteIcon(t) + '</span><span class="open">Details →</span></div></div>';
@@ -492,7 +492,7 @@ table.list tbody tr[data-v] { cursor: pointer; } table.list tbody tr[data-v]:hov
       ["Version", c && c.version != null ? c.version : "—", c ? n(c.n_versions) + " logged" : "", false],
       ["Agent time", c ? dur(c.elapsed_sec) : "—", c ? "of " + dur(c.budget_sec) + " budget" : "", false],
       [c && c.status === "running" ? "Time left" : "Status", c ? (c.status === "running" ? (c.eta_sec != null ? "≤ " + dur(c.eta_sec) : "—") : "done") : "—", c ? "started " + when(c.started).slice(0, 10) : "", false],
-      ["Baseline", fmt(a.baseline_self, 6), "starting method", true],
+      ["Baseline", fmt(a.baseline_self, 6), "weak baseline", true],
       ["Best visible", fmt(c && c.best_visible, 6), c && c.best_visible_version != null ? "version " + c.best_visible_version : "", true],
       ["Sealed test", fmt(c && c.final, 6), c && c.final == null ? (c.status === "running" ? "after the run" : (c.err || "")) : "final submission", true],
       ["SOTA (self)", fmt(a.sota_self, 6), "our reproduction", true],
