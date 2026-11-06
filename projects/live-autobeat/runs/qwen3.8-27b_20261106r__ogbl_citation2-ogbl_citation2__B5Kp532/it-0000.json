@@ -1,1 +1,0 @@
-[{"v":1,"par":0,"chg":"change=MAX_TARGETS 3M->1M, BATCH 8192->4096, +cosine LR sched, +weight_decay=1e-5, TRAIN_BUDGET 1200->600 kept=true","sc":"score=0.8683","val":0.8683,"st":"kept","code":"aaeab6fa247e16a64b6a","diff":null}]
