@@ -1,0 +1,1 @@
+[{"v":1,"par":0,"chg":"change=GNN-only 1seed 90s bs32 + RF500 blend measured notes=baseline: gnn=0.7741 rf=0.7975 blend_w=0.5 fast selfcheck 90s+61s forest","sc":"score=0.8076","val":0.8076,"st":"kept","code":"5381e2058ab3e2ff4547","diff":null}]
