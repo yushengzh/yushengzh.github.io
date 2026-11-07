@@ -1,0 +1,1 @@
+[{"v":3,"par":2,"chg":"fixed .long() casts + y-mask 1D->2D reshape; val AP=0.0959 (6 epochs, 300s budget) kept","sc":"score=0.0959","val":0.0959,"st":"kept","code":"258f2fd68e238e36c2a3","diff":null}]
