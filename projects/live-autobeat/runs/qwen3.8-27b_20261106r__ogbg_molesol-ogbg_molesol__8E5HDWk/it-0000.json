@@ -1,0 +1,1 @@
+[{"v":1,"par":null,"chg":"GIN-VN(3 seeds)+RF blend reference; GNN_BUDGET=2400 SEEDS=3 FP2048 radii0-2, blend grid{0,.25,.5,.75,1}; val RMSE confirmed 0.8187 this session (prior agent had 0.8235 unverified). kept","sc":"score=0.8187","val":0.8187,"st":"kept","code":"5381e2058ab3e2ff4547","diff":null}]
